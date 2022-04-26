@@ -38,6 +38,7 @@ export const padding = {
   lgP: 20,
   xlP: 25,
   xxlP: 30,
+  xxxlP: 45,
 };
 
 export const margin = {
@@ -47,4 +48,5 @@ export const margin = {
   lgM: 20,
   xlM: 25,
   xxlM: 30,
+  xxxlM: 40,
 };
