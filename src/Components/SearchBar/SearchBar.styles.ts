@@ -1,11 +1,5 @@
-import { StyleSheet, StatusBar } from "react-native";
-import {
-  colors,
-  padding,
-  fontSize,
-  fontFamily,
-  margin,
-} from "../../Config/variables";
+import { StyleSheet } from "react-native";
+import { colors, padding, fontFamily } from "../../Config/variables";
 
 const styles = StyleSheet.create({
   // ============================= SEARCHBAR =============================
@@ -55,7 +49,6 @@ const styles = StyleSheet.create({
 
   cancel__container: {
     width: "20%",
-    // backgroundColor: "red",
     justifyContent: "center",
     alignItems: "center",
   },
