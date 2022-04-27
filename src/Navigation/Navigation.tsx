@@ -25,7 +25,10 @@ export default function Navigation() {
   return (
     <NavigationContainer>
       <Header />
-      <Stack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
+      <Stack.Navigator
+        initialRouteName="FilmDetails"
+        screenOptions={screenOptions}
+      >
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="FilmDetails" component={FilmDetails} />
         <Stack.Screen name="Favorites" component={Favorites} />
