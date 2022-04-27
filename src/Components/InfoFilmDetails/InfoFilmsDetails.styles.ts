@@ -103,6 +103,44 @@ const styles = StyleSheet.create({
   },
 
   // ============================= BUTTONS FILM DETAILS =============================
+
+  buttons__container: {
+    marginTop: margin.xlM,
+    marginBottom: margin.mdM,
+  },
+
+  button__primary: {
+    backgroundColor: colors.primaryCTA,
+    marginBottom: margin.mdM,
+    alignItems: "center",
+    padding: padding.mdP,
+
+    borderRadius: 10,
+  },
+
+  button__secondary: {
+    marginBottom: margin.mdM,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: padding.mdP,
+    borderRadius: 10,
+  },
+
+  text__button: {
+    color: colors.primaryGrey,
+    fontFamily: fontFamily.pop500,
+    fontSize: 13,
+  },
+
+  strong__text__button: {
+    fontFamily: fontFamily.pop700,
+  },
+
+  icon__button: {
+    marginLeft: margin.sM,
+    color: colors.primaryGrey,
+  },
 });
 
 export default styles;

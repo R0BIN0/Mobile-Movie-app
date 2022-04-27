@@ -1,6 +1,15 @@
-import { View, Text, FlatList, ListRenderItem, Image } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  ListRenderItem,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { FC } from "react";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+
 import styles from "./InfoFilmsDetails.styles";
 
 type Props = {
@@ -110,8 +119,16 @@ const CastingFilm: FC<Props> = ({ name, role, image }) => (
 );
 
 const ButtonsFilm: FC = () => (
-  <View>
-    <Text>A</Text>
+  <View style={styles.buttons__container}>
+    <TouchableOpacity style={styles.button__secondary}>
+      <Text style={styles.text__button}>Ajouter à mes favoris </Text>
+      <FontAwesome5 name="heart" size={16} style={styles.icon__button} />
+    </TouchableOpacity>
+    <TouchableOpacity style={styles.button__primary}>
+      <Text style={styles.text__button}>
+        Regarder <Text style={styles.strong__text__button}>Fight Club</Text>
+      </Text>
+    </TouchableOpacity>
   </View>
 );
 
