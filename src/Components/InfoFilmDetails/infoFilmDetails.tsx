@@ -1,13 +1,67 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { View, Text, FlatList, ListRenderItem, Image } from "react-native";
+import { FC } from "react";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import styles from "./InfoFilmsDetails.styles";
 
-const infoFilmDetails = () => {
+type Props = {
+  id?: number;
+  name: string;
+  role: string;
+  image: string;
+};
+
+const data = [
+  {
+    id: 1,
+    name: "Edward Johnaaaaaaa",
+    role: "Nate",
+    image:
+      "https://th.bing.com/th/id/OIP.6X5s7tF-4VRUPnCPJbSzmwHaLH?pid=ImgDet&rs=1",
+  },
+  {
+    id: 2,
+    name: "Edward Johns",
+    role: "Nate",
+    image:
+      "https://th.bing.com/th/id/OIP.6X5s7tF-4VRUPnCPJbSzmwHaLH?pid=ImgDet&rs=1",
+  },
+  {
+    id: 3,
+    name: "Edward Johns",
+    role: "Nate",
+    image:
+      "https://th.bing.com/th/id/OIP.6X5s7tF-4VRUPnCPJbSzmwHaLH?pid=ImgDet&rs=1",
+  },
+  {
+    id: 4,
+    name: "Edward Johns",
+    role: "Nate",
+    image:
+      "https://th.bing.com/th/id/OIP.6X5s7tF-4VRUPnCPJbSzmwHaLH?pid=ImgDet&rs=1",
+  },
+  {
+    id: 5,
+    name: "Edward Johns",
+    role: "Nate",
+    image:
+      "https://th.bing.com/th/id/OIP.6X5s7tF-4VRUPnCPJbSzmwHaLH?pid=ImgDet&rs=1",
+  },
+];
+
+const infoFilmDetails: FC = () => {
+  const renderItem: ListRenderItem<Props> = ({ item }) => (
+    <CastingFilm key={item.id} {...item} />
+  );
   return (
     <View style={styles.container}>
       <DescriptionFilm />
-      <CastingFilm />
+      <Text style={styles.title__section}>Casting</Text>
+      <FlatList
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        data={data}
+        {...{ renderItem }}
+      />
       <ButtonsFilm />
     </View>
   );
@@ -39,13 +93,23 @@ const DescriptionFilm = () => (
   </View>
 );
 
-const CastingFilm = () => (
+const CastingFilm: FC<Props> = ({ name, role, image }) => (
   <View>
-    <Text>A</Text>
+    <View style={styles.img__container}>
+      <Image style={styles.img} source={{ uri: image }} />
+    </View>
+    <View>
+      <Text style={styles.name}>
+        {name.length >= 14 ? `${name.substring(0, 12)}...` : `${name}`}
+      </Text>
+      <Text style={styles.role}>
+        {role.length >= 14 ? `${role.substring(0, 12)}...` : `${role}`}
+      </Text>
+    </View>
   </View>
 );
 
-const ButtonsFilm = () => (
+const ButtonsFilm: FC = () => (
   <View>
     <Text>A</Text>
   </View>

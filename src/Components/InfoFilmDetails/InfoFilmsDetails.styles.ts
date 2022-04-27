@@ -16,6 +16,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primaryBlue,
   },
 
+  title__section: {
+    color: colors.primaryGrey,
+    fontFamily: fontFamily.pop500,
+    fontSize: fontSize.sFS,
+    marginVertical: margin.sM,
+  },
+
   // ============================= DESCRIPTION FILM DETAILS =============================
 
   year: {
@@ -35,9 +42,8 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    // fontFamily: fontFamily.pop700,
     color: colors.primaryGrey,
-    fontSize: fontSize.lgFS,
+    fontSize: fontSize.xlFS,
     lineHeight: 35,
     fontWeight: "bold",
   },
@@ -76,6 +82,26 @@ const styles = StyleSheet.create({
   },
 
   // ============================= CASTING FILM DETAILS =============================
+
+  img__container: {
+    marginBottom: margin.sM,
+    paddingRight: padding.sP,
+  },
+
+  img: {
+    width: 110,
+    height: 170,
+    borderRadius: 10,
+  },
+
+  name: {
+    color: colors.primaryGrey,
+  },
+
+  role: {
+    color: colors.secondaryGrey,
+  },
+
   // ============================= BUTTONS FILM DETAILS =============================
 });
 

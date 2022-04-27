@@ -4,6 +4,7 @@ import styles from "./FilmDetails.styles";
 import InfoFilmDetails from "../../Components/InfoFilmDetails/infoFilmDetails";
 import { LinearGradient } from "expo-linear-gradient";
 import { colors } from "../../Config/variables";
+import { ScrollView } from "react-native-gesture-handler";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface FilmDetailsProps {}
@@ -11,8 +12,10 @@ interface FilmDetailsProps {}
 const FilmDetails: FC<FilmDetailsProps> = () => {
   return (
     <View>
-      <PictureFilmDetails />
-      <InfoFilmDetails />
+      <ScrollView>
+        <PictureFilmDetails />
+        <InfoFilmDetails />
+      </ScrollView>
     </View>
   );
 };
