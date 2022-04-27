@@ -4,7 +4,7 @@ export const colors = {
   tertiaryBlue: "#7B7D95",
 
   primaryCTA: "#E42526",
-  secondartCTA: "#DAA31D",
+  secondaryCTA: "#DAA31D",
 
   primaryGrey: "#FFFFFF",
   secondaryGrey: "#BDBDBD",
