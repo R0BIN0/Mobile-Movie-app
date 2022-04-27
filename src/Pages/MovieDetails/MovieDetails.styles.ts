@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { colors, padding, margin } from "../../Config/variables";
 
 const styles = StyleSheet.create({
   // ============================= FILM DETAILS =============================
@@ -18,7 +17,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     height: "100%",
-    // backgroundColor: colors.primaryBlue,
   },
 });
 

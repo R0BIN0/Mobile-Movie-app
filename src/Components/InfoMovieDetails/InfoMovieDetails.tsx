@@ -10,7 +10,7 @@ import { FC } from "react";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
-import styles from "./InfoFilmsDetails.styles";
+import styles from "./InfoMovieDetails.styles";
 
 type Props = {
   id?: number;
@@ -57,13 +57,13 @@ const data = [
   },
 ];
 
-const infoFilmDetails: FC = () => {
+const InfoMovieDetails: FC = () => {
   const renderItem: ListRenderItem<Props> = ({ item }) => (
-    <CastingFilm key={item.id} {...item} />
+    <CastingMovie key={item.id} {...item} />
   );
   return (
     <View style={styles.container}>
-      <DescriptionFilm />
+      <DescriptionMovie />
       <Text style={styles.title__section}>Casting</Text>
       <FlatList
         horizontal
@@ -71,12 +71,12 @@ const infoFilmDetails: FC = () => {
         data={data}
         {...{ renderItem }}
       />
-      <ButtonsFilm />
+      <ButtonsMovie />
     </View>
   );
 };
 
-const DescriptionFilm = () => (
+const DescriptionMovie = () => (
   <View>
     <Text style={styles.year}>2021</Text>
     <View style={styles.title__container}>
@@ -102,7 +102,7 @@ const DescriptionFilm = () => (
   </View>
 );
 
-const CastingFilm: FC<Props> = ({ name, role, image }) => (
+const CastingMovie: FC<Props> = ({ name, role, image }) => (
   <View>
     <View style={styles.img__container}>
       <Image style={styles.img} source={{ uri: image }} />
@@ -118,7 +118,7 @@ const CastingFilm: FC<Props> = ({ name, role, image }) => (
   </View>
 );
 
-const ButtonsFilm: FC = () => (
+const ButtonsMovie: FC = () => (
   <View style={styles.buttons__container}>
     <TouchableOpacity style={styles.button__secondary}>
       <Text style={styles.text__button}>Ajouter à mes favoris </Text>
@@ -132,4 +132,4 @@ const ButtonsFilm: FC = () => (
   </View>
 );
 
-export default infoFilmDetails;
+export default InfoMovieDetails;

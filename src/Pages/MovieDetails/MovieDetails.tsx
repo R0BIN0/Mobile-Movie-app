@@ -1,7 +1,7 @@
 import { View, Image } from "react-native";
 import { FC } from "react";
-import styles from "./FilmDetails.styles";
-import InfoFilmDetails from "../../Components/InfoFilmDetails/infoFilmDetails";
+import styles from "./MovieDetails.styles";
+import InfoMovieDetails from "../../Components/InfoMovieDetails/InfoMovieDetails";
 import { LinearGradient } from "expo-linear-gradient";
 import { colors } from "../../Config/variables";
 import { ScrollView } from "react-native-gesture-handler";
@@ -9,18 +9,18 @@ import { ScrollView } from "react-native-gesture-handler";
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface FilmDetailsProps {}
 
-const FilmDetails: FC<FilmDetailsProps> = () => {
+const MovieDetails: FC<FilmDetailsProps> = () => {
   return (
     <View>
       <ScrollView>
-        <PictureFilmDetails />
-        <InfoFilmDetails />
+        <PictureMovieDetails />
+        <InfoMovieDetails />
       </ScrollView>
     </View>
   );
 };
 
-const PictureFilmDetails: FC = () => (
+const PictureMovieDetails: FC = () => (
   <View style={styles.img__container}>
     <Image
       style={styles.img}
@@ -35,4 +35,4 @@ const PictureFilmDetails: FC = () => (
   </View>
 );
 
-export default FilmDetails;
+export default MovieDetails;

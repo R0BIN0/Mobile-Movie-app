@@ -1,6 +1,6 @@
 import { View, Text, Image } from "react-native";
 import { FC } from "react";
-import styles from "./FilmCard.styles";
+import styles from "./MovieCard.styles";
 import RatingStars from "../RatingStars/RatingStars";
 
 type PictureProps = {
@@ -17,7 +17,7 @@ type InfoProps = {
 
 type Props = PictureProps & InfoProps;
 
-const FilmCard: FC<Props> = ({
+const MovieCard: FC<Props> = ({
   title,
   image,
   rating,
@@ -26,8 +26,8 @@ const FilmCard: FC<Props> = ({
 }) => {
   return (
     <View style={styles.container}>
-      <FilmPicture image={image} />
-      <FilmInfo
+      <MoviePicture image={image} />
+      <MovieInfo
         title={title}
         rating={rating}
         categories={categories}
@@ -37,7 +37,7 @@ const FilmCard: FC<Props> = ({
   );
 };
 
-const FilmPicture: FC<PictureProps> = ({ image }) => (
+const MoviePicture: FC<PictureProps> = ({ image }) => (
   <View style={styles.img__container}>
     <Image
       style={styles.img}
@@ -48,7 +48,7 @@ const FilmPicture: FC<PictureProps> = ({ image }) => (
   </View>
 );
 
-const FilmInfo: FC<InfoProps> = ({
+const MovieInfo: FC<InfoProps> = ({
   title,
   rating,
   categories,
@@ -68,4 +68,4 @@ const FilmInfo: FC<InfoProps> = ({
   </View>
 );
 
-export default FilmCard;
+export default MovieCard;

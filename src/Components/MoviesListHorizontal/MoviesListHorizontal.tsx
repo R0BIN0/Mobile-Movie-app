@@ -1,6 +1,6 @@
 import { View, Text, Image, FlatList, ListRenderItem } from "react-native";
 import { FC } from "react";
-import styles from "./FilmsListHorizontal.styles";
+import styles from "./MoviesListHorizontal.styles";
 
 type PictureProps = {
   image: string;
@@ -52,12 +52,12 @@ const data = [
   },
 ];
 
-const FilmsListHorizontal: FC = () => {
+const MoviesListHorizontal: FC = () => {
   const renderItem: ListRenderItem<Props> = ({ item }) => {
     return (
       <View key={item.id}>
-        <FilmPicture image={item.image} />
-        <FilmInfo title={item.title} categories={item.categories} />
+        <MoviePicture image={item.image} />
+        <MovieInfo title={item.title} categories={item.categories} />
       </View>
     );
   };
@@ -74,7 +74,7 @@ const FilmsListHorizontal: FC = () => {
   );
 };
 
-const FilmPicture: FC<PictureProps> = ({ image }) => (
+const MoviePicture: FC<PictureProps> = ({ image }) => (
   <View style={styles.img__container}>
     <Image
       source={{
@@ -85,7 +85,7 @@ const FilmPicture: FC<PictureProps> = ({ image }) => (
   </View>
 );
 
-const FilmInfo: FC<InfoProps> = ({ title, categories }) => (
+const MovieInfo: FC<InfoProps> = ({ title, categories }) => (
   <View>
     <Text style={styles.title}>
       {title.length >= 17 ? `${title.substring(0, 15)}...` : `${title}`}
@@ -97,4 +97,4 @@ const FilmInfo: FC<InfoProps> = ({ title, categories }) => (
   </View>
 );
 
-export default FilmsListHorizontal;
+export default MoviesListHorizontal;

@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import styles from "./BottomBar.styles";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import Feather from "react-native-vector-icons/Feather";

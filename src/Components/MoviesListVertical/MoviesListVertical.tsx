@@ -1,7 +1,7 @@
 import { View, TouchableOpacity } from "react-native";
 import { FC } from "react";
-import FilmCard from "../FilmCard/FilmCard";
-import styles from "./FilmsListVertical.styles";
+import MovieCard from "../MovieCard/MovieCard";
+import styles from "./MoviesListVertical.styles";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const data = [
@@ -37,23 +37,23 @@ const data = [
   },
 ];
 
-const FilmsListVertical: FC = () => {
+const MoviesListVertical: FC = () => {
   return (
     <View style={styles.container}>
       {data.map((item) => (
         <View key={item.id} style={styles.film__container}>
-          <FilmCard {...item} />
-          <FilmsButton />
+          <MovieCard {...item} />
+          <MoviesButton />
         </View>
       ))}
     </View>
   );
 };
 
-const FilmsButton = () => (
+const MoviesButton = () => (
   <TouchableOpacity style={styles.button__container}>
     <MaterialIcons style={styles.icon} name="add" size={25} />
   </TouchableOpacity>
 );
 
-export default FilmsListVertical;
+export default MoviesListVertical;
