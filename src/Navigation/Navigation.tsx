@@ -7,6 +7,7 @@ import FilmDetails from "../Pages/FilmDetails/FilmDetails";
 import Favorites from "../Pages/Favorites/Favorites";
 
 import Header from "../Components/Header/Header";
+import BottomBar from "../Components/BottomBar/BottomBar";
 
 export type RouteParams = {
   Home: undefined;
@@ -29,6 +30,7 @@ export default function Navigation() {
         <Stack.Screen name="FilmDetails" component={FilmDetails} />
         <Stack.Screen name="Favorites" component={Favorites} />
       </Stack.Navigator>
+      <BottomBar />
     </NavigationContainer>
   );
 }

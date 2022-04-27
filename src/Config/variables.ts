@@ -48,5 +48,5 @@ export const margin = {
   lgM: 20,
   xlM: 25,
   xxlM: 30,
-  xxxlM: 40,
+  xxxlM: 45,
 };
