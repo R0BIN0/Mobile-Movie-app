@@ -1,8 +1,7 @@
-import { View, Text, Image } from "react-native";
+import { View, Image } from "react-native";
 import { FC } from "react";
 import styles from "./FilmDetails.styles";
 import InfoFilmDetails from "../../Components/InfoFilmDetails/infoFilmDetails";
-// import LinearGradient from "react-native-linear-gradient";
 import { LinearGradient } from "expo-linear-gradient";
 import { colors } from "../../Config/variables";
 
