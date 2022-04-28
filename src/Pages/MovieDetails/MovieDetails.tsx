@@ -6,11 +6,16 @@ import { LinearGradient } from "expo-linear-gradient";
 import { colors } from "../../Config/variables";
 import { ScrollView } from "react-native-gesture-handler";
 import useRouteName from "../../Hooks/useRouteName";
+import { RouteProp, useRoute } from "@react-navigation/native";
+import { RouteParams } from "../../Navigation/Navigation";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface FilmDetailsProps {}
+// eslint-disable-next-line @typescript-eslint/ban-types
+type IdProps = {};
 
-const MovieDetails: FC<FilmDetailsProps> = () => {
+const MovieDetails: FC<IdProps> = () => {
+  const route = useRoute<RouteProp<RouteParams>>();
+  console.log(route.params?.id);
+
   const { routeName } = useRouteName();
 
   return (

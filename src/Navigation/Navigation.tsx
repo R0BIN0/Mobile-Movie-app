@@ -12,7 +12,7 @@ import RouteContextProvider from "../Context/RouteContext";
 
 export type RouteParams = {
   Home: undefined;
-  MovieDetails: undefined;
+  MovieDetails: { id: number };
   Favorites: undefined;
 };
 

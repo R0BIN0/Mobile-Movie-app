@@ -3,6 +3,13 @@ import { FC } from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import styles from "./MoviesListVertical.styles";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { RouteParams } from "../../Navigation/Navigation";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
+
+type IdProps = {
+  id: number;
+};
 
 type Props = {
   id: number;
@@ -24,17 +31,25 @@ const MoviesListVertical: FC<DataProps> = ({ data }) => {
       {data.map((item) => (
         <View key={item.id} style={styles.film__container}>
           <MovieCard {...item} />
-          <MoviesButton />
+          <MoviesButton id={item.id} />
         </View>
       ))}
     </View>
   );
 };
 
-const MoviesButton = () => (
-  <TouchableOpacity style={styles.button__container}>
-    <MaterialIcons style={styles.icon} name="add" size={25} />
-  </TouchableOpacity>
-);
+const MoviesButton: FC<IdProps> = ({ id }) => {
+  const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>();
+
+  const onPress = (): void => {
+    navigation.navigate("MovieDetails", { id });
+  };
+
+  return (
+    <TouchableOpacity {...{ onPress }} style={styles.button__container}>
+      <MaterialIcons style={styles.icon} name="add" size={25} />
+    </TouchableOpacity>
+  );
+};
 
 export default MoviesListVertical;

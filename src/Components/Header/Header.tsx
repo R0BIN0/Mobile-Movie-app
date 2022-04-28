@@ -6,7 +6,7 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 // Styles
 import styles from "./Header.styles";

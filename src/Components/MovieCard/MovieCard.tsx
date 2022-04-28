@@ -3,14 +3,17 @@ import { FC } from "react";
 import styles from "./MovieCard.styles";
 import RatingStars from "../RatingStars/RatingStars";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RouteParams } from "../../Navigation/Navigation";
+import { useNavigation } from "@react-navigation/native";
 
 type PictureProps = {
+  id: number;
   image: string;
   like?: boolean;
 };
 
 type InfoProps = {
-  id?: number;
   title: string;
   rating: number;
   categories: string[];
@@ -20,6 +23,7 @@ type InfoProps = {
 type Props = PictureProps & InfoProps;
 
 const MovieCard: FC<Props> = ({
+  id,
   title,
   image,
   rating,
@@ -29,7 +33,7 @@ const MovieCard: FC<Props> = ({
 }) => {
   return (
     <View style={styles.container}>
-      <MoviePicture image={image} like={like} />
+      <MoviePicture id={id} image={image} like={like} />
       <MovieInfo
         title={title}
         rating={rating}
@@ -40,22 +44,30 @@ const MovieCard: FC<Props> = ({
   );
 };
 
-const MoviePicture: FC<PictureProps> = ({ image, like }) => (
-  <View style={styles.img__container}>
-    <Image
-      style={styles.img}
-      source={{
-        uri: image,
-      }}
-    />
+const MoviePicture: FC<PictureProps> = ({ id, image, like }) => {
+  const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>();
 
-    {like && (
-      <TouchableOpacity style={styles.like__container}>
-        <FontAwesome name="heart" size={16} style={styles.like} />
-      </TouchableOpacity>
-    )}
-  </View>
-);
+  const onPress = (): void => {
+    navigation.navigate("MovieDetails", { id });
+  };
+
+  return (
+    <TouchableOpacity {...{ onPress }} style={styles.img__container}>
+      <Image
+        style={styles.img}
+        source={{
+          uri: image,
+        }}
+      />
+
+      {like && (
+        <TouchableOpacity style={styles.like__container}>
+          <FontAwesome name="heart" size={16} style={styles.like} />
+        </TouchableOpacity>
+      )}
+    </TouchableOpacity>
+  );
+};
 
 const MovieInfo: FC<InfoProps> = ({
   title,

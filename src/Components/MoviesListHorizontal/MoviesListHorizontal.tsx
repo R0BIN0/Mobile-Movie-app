@@ -1,13 +1,23 @@
-import { View, Text, Image, FlatList, ListRenderItem } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  FlatList,
+  ListRenderItem,
+  TouchableOpacity,
+} from "react-native";
 import { FC } from "react";
 import styles from "./MoviesListHorizontal.styles";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RouteParams } from "../../Navigation/Navigation";
+import { useNavigation } from "@react-navigation/native";
 
 type PictureProps = {
+  id: number;
   image: string;
 };
 
 type InfoProps = {
-  id?: number;
   title: string;
   categories: string[];
 };
@@ -56,7 +66,7 @@ const MoviesListHorizontal: FC = () => {
   const renderItem: ListRenderItem<Props> = ({ item }) => {
     return (
       <View key={item.id}>
-        <MoviePicture image={item.image} />
+        <MoviePicture id={item.id} image={item.image} />
         <MovieInfo title={item.title} categories={item.categories} />
       </View>
     );
@@ -74,16 +84,24 @@ const MoviesListHorizontal: FC = () => {
   );
 };
 
-const MoviePicture: FC<PictureProps> = ({ image }) => (
-  <View style={styles.img__container}>
-    <Image
-      source={{
-        uri: image,
-      }}
-      style={styles.img}
-    />
-  </View>
-);
+const MoviePicture: FC<PictureProps> = ({ id, image }) => {
+  const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>();
+
+  const onPress = (): void => {
+    navigation.navigate("MovieDetails", { id });
+  };
+
+  return (
+    <TouchableOpacity {...{ onPress }} style={styles.img__container}>
+      <Image
+        source={{
+          uri: image,
+        }}
+        style={styles.img}
+      />
+    </TouchableOpacity>
+  );
+};
 
 const MovieInfo: FC<InfoProps> = ({ title, categories }) => (
   <View>
