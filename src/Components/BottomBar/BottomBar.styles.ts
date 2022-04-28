@@ -33,10 +33,10 @@ const styles = StyleSheet.create({
 
   icon__container: {
     backgroundColor: colors.primaryCTA,
-    width: 70,
-    height: 70,
+    width: 75,
+    height: 75,
     borderRadius: 50,
-    borderWidth: 5,
+    borderWidth: 7,
     borderColor: colors.secondaryBlue,
     justifyContent: "center",
     alignItems: "center",

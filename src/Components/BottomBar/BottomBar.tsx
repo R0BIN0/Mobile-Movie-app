@@ -1,11 +1,12 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import { FC } from "react";
+import { FC, useContext } from "react";
 import styles from "./BottomBar.styles";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import Feather from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RouteParams } from "../../Navigation/Navigation";
+import { RouteContext } from "../../Context/RouteContext";
 
 type Props = {
   title?: string;
@@ -96,14 +97,20 @@ const MenuItems: FC<Props> = ({ title, icon, iconType, to }) => {
 };
 
 const SearchItem: FC<Props> = ({ icon, to }) => {
+  const { setIsBottomButton } = useContext(RouteContext);
   const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>();
+
+  const onPress = (): void => {
+    setIsBottomButton(true);
+    // Avoid IOS transition page problem
+    setTimeout(() => {
+      navigation.navigate(`${to}` as keyof RouteParams);
+    }, 100);
+  };
 
   return (
     <View style={styles.menuItems__container}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate(`${to}` as keyof RouteParams)}
-        style={styles.icon__container}
-      >
+      <TouchableOpacity {...{ onPress }} style={styles.icon__container}>
         <Feather name={icon} size={25} style={styles.icon} />
       </TouchableOpacity>
     </View>
