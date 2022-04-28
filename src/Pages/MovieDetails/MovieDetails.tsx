@@ -5,11 +5,14 @@ import InfoMovieDetails from "../../Components/InfoMovieDetails/InfoMovieDetails
 import { LinearGradient } from "expo-linear-gradient";
 import { colors } from "../../Config/variables";
 import { ScrollView } from "react-native-gesture-handler";
+import useRouteName from "../../Hooks/useRouteName";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface FilmDetailsProps {}
 
 const MovieDetails: FC<FilmDetailsProps> = () => {
+  const { routeName } = useRouteName();
+
   return (
     <View>
       <ScrollView>

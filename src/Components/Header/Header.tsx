@@ -14,9 +14,17 @@ import styles from "./Header.styles";
 // Icons
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
+// Context
+import { useContext } from "react";
+import { RouteContext } from "../../Context/RouteContext";
+
 const Header: FC = () => {
+  const { routeName } = useContext(RouteContext);
+
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      style={{ display: routeName === "MovieDetails" ? "none" : "flex" }}
+    >
       <View style={styles.container}>
         <HeaderProfile />
         <HeaderNotification />
