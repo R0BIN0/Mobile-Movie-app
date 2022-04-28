@@ -15,7 +15,7 @@ const MovieDetails: FC<FilmDetailsProps> = () => {
 
   return (
     <View>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
         <PictureMovieDetails />
         <InfoMovieDetails />
       </ScrollView>

@@ -15,7 +15,7 @@ const Home: FC<HomeProps> = () => {
   return (
     <>
       <SearchBar />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
         <View style={styles.section}>
           <Text style={styles.title}>Les plus populaires</Text>
           <MoviesListHorizontal />
