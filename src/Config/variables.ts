@@ -5,6 +5,7 @@ export const colors = {
 
   primaryCTA: "#E42526",
   secondaryCTA: "#DAA31D",
+  tertiaryCTA: "#E42581",
 
   primaryGrey: "#FFFFFF",
   secondaryGrey: "#BDBDBD",

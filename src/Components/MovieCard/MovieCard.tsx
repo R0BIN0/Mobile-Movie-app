@@ -1,10 +1,12 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import { FC } from "react";
 import styles from "./MovieCard.styles";
 import RatingStars from "../RatingStars/RatingStars";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 type PictureProps = {
   image: string;
+  like?: boolean;
 };
 
 type InfoProps = {
@@ -23,10 +25,11 @@ const MovieCard: FC<Props> = ({
   rating,
   categories,
   description,
+  like,
 }) => {
   return (
     <View style={styles.container}>
-      <MoviePicture image={image} />
+      <MoviePicture image={image} like={like} />
       <MovieInfo
         title={title}
         rating={rating}
@@ -37,7 +40,7 @@ const MovieCard: FC<Props> = ({
   );
 };
 
-const MoviePicture: FC<PictureProps> = ({ image }) => (
+const MoviePicture: FC<PictureProps> = ({ image, like }) => (
   <View style={styles.img__container}>
     <Image
       style={styles.img}
@@ -45,6 +48,12 @@ const MoviePicture: FC<PictureProps> = ({ image }) => (
         uri: image,
       }}
     />
+
+    {like && (
+      <TouchableOpacity style={styles.like__container}>
+        <FontAwesome name="heart" size={16} style={styles.like} />
+      </TouchableOpacity>
+    )}
   </View>
 );
 
@@ -54,7 +63,7 @@ const MovieInfo: FC<InfoProps> = ({
   categories,
   description,
 }) => (
-  <View>
+  <View style={styles.info__container}>
     <Text style={styles.title}>{title}</Text>
     <View style={styles.rating__container}>
       <RatingStars rating={rating} />

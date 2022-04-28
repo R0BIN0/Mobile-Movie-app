@@ -28,7 +28,7 @@ export default function Navigation() {
       <NavigationContainer>
         <Header />
         <Stack.Navigator
-          initialRouteName="MovieDetails"
+          initialRouteName="Favorites"
           screenOptions={screenOptions}
         >
           <Stack.Screen name="Home" component={Home} />

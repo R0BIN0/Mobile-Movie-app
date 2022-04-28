@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   // ============================= FILM CARD PICTURE =============================
 
   img__container: {
-    paddingRight: padding.sP,
+    position: "relative",
   },
 
   img: {
@@ -22,7 +22,21 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
 
+  like__container: {
+    position: "absolute",
+    top: 6,
+    right: 6,
+  },
+
+  like: {
+    color: colors.tertiaryCTA,
+  },
+
   // ============================= FILM CARD INFO =============================
+
+  info__container: {
+    paddingLeft: padding.sP,
+  },
 
   title: {
     color: colors.primaryGrey,
