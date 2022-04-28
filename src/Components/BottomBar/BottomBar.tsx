@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Platform } from "react-native";
 import { FC, useContext } from "react";
 import styles from "./BottomBar.styles";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
@@ -101,11 +101,18 @@ const SearchItem: FC<Props> = ({ icon, to }) => {
   const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>();
 
   const onPress = (): void => {
-    setIsBottomButton(true);
     // Avoid IOS transition page problem
-    setTimeout(() => {
+    console.log(Platform.OS);
+
+    if (Platform.OS === "android") {
+      setIsBottomButton(true);
       navigation.navigate(`${to}` as keyof RouteParams);
-    }, 100);
+    } else {
+      setIsBottomButton(true);
+      setTimeout(() => {
+        navigation.navigate(`${to}` as keyof RouteParams);
+      }, 100);
+    }
   };
 
   return (
