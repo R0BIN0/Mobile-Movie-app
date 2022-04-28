@@ -21,9 +21,7 @@ const SearchBar: FC = () => {
   const inputRef = useRef<TextInput>(null);
 
   const isBottomTabInput = () => {
-    console.log("AAAAAAAAAAAAAAAAAAAA");
-
-    // setValue("");
+    setValue("");
     inputRef.current?.focus();
     setIsBottomButton(false);
   };
