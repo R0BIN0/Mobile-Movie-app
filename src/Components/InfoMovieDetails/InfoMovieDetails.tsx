@@ -42,6 +42,7 @@ type CastingProps = {
 type ButtonProps = {
   addToFavorites: () => void;
   removeFromFavorites: () => void;
+  like: boolean;
 };
 
 // const data = [
@@ -90,6 +91,7 @@ const InfoMovieDetails: FC<Props> = ({
   description,
   categories,
   casting,
+  like,
 }) => {
   const renderItem: ListRenderItem<CastingProps> = ({ item }) => (
     <CastingMovie key={item.id} {...item} />
@@ -113,6 +115,7 @@ const InfoMovieDetails: FC<Props> = ({
       <ButtonsMovie
         addToFavorites={addToFavorites}
         removeFromFavorites={removeFromFavorites}
+        like={like}
       />
     </View>
   );
@@ -148,7 +151,7 @@ const DescriptionMovie: FC<DescriptionProps> = ({
   </View>
 );
 
-const CastingMovie: FC<CastingProps> = ({ id, name, role, image }) => (
+const CastingMovie: FC<CastingProps> = ({ name, role, image }) => (
   <View>
     <View style={styles.img__container}>
       <Image style={styles.img} source={{ uri: image }} />
@@ -167,21 +170,28 @@ const CastingMovie: FC<CastingProps> = ({ id, name, role, image }) => (
 const ButtonsMovie: FC<ButtonProps> = ({
   addToFavorites,
   removeFromFavorites,
-}) => (
-  <View style={styles.buttons__container}>
-    <TouchableOpacity
-      onPress={() => addToFavorites()}
-      style={styles.button__secondary}
-    >
-      <Text style={styles.text__button}>Ajouter à mes favoris </Text>
-      <FontAwesome5 name="heart" size={16} style={styles.icon__button} />
-    </TouchableOpacity>
-    <TouchableOpacity style={styles.button__primary}>
-      <Text style={styles.text__button}>
-        Regarder <Text style={styles.strong__text__button}>Fight Club</Text>
-      </Text>
-    </TouchableOpacity>
-  </View>
-);
+  like,
+}) => {
+  const onPress = (): void => {
+    like ? removeFromFavorites() : addToFavorites();
+  };
+  return (
+    <View style={styles.buttons__container}>
+      {/* <TouchableOpacity {...{ onPress }} style={styles.button__secondary}> */}
+      <TouchableOpacity
+        {...{ onPress }}
+        style={{ backgroundColor: like ? "pink" : "black" }}
+      >
+        <Text style={styles.text__button}>Ajouter à mes favoris </Text>
+        <FontAwesome5 name="heart" size={16} style={styles.icon__button} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button__primary}>
+        <Text style={styles.text__button}>
+          Regarder <Text style={styles.strong__text__button}>Fight Club</Text>
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 export default InfoMovieDetails;

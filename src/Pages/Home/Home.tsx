@@ -54,34 +54,26 @@ const data = [
 ];
 
 const Home: FC = () => {
-  // const clearLS = async (): Promise<void> => {
-  //   await AsyncStorage.clear();
+  // const [test, setTest] = useState<string>();
+  // console.log(test);
+
+  // const getMovies = async (): Promise<void> => {
+  //   try {
+  //     const values = await AsyncStorage.getItem("Movies");
+
+  //     if (values !== null) {
+  //       setTest(JSON.parse(values));
+  //     } else {
+  //       throw "Error";
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
   // };
 
   // useEffect(() => {
-  //   clearLS();
+  //   getMovies();
   // }, []);
-
-  const [test, setTest] = useState<string>();
-  console.log(test);
-
-  const getMovies = async (): Promise<void> => {
-    try {
-      const values = await AsyncStorage.getItem("Movies");
-
-      if (values !== null) {
-        setTest(JSON.parse(values));
-      } else {
-        throw "Error";
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getMovies();
-  }, []);
 
   return (
     <>

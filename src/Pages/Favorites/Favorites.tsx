@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import styles from "./Favorites.styles";
 // import useRouteName from "../../Hooks/useRouteName";
 import { ScrollView } from "react-native-gesture-handler";
@@ -65,6 +65,8 @@ const data = [
 ];
 
 const Favorites: FC = () => {
+  // BUG HERE
+
   const [moviesArr, setMoviesArr] = useState<FavProps[]>([]);
 
   console.log(moviesArr);

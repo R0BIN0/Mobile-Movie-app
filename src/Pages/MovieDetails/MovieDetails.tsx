@@ -1,5 +1,5 @@
 import { View, Image } from "react-native";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "./MovieDetails.styles";
 import InfoMovieDetails from "../../Components/InfoMovieDetails/InfoMovieDetails";
 import { LinearGradient } from "expo-linear-gradient";
@@ -8,9 +8,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { RouteParams } from "../../Navigation/Navigation";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-// import { TOKEN } from "@env";
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 type PictureProps = {
   image: string;
 };
@@ -28,16 +26,46 @@ const MovieDetails: FC = () => {
   const route = useRoute<RouteProp<RouteParams>>();
   console.log(route.params?.id);
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  const [like, setLike] = useState<boolean>(false);
+  const [LS, setLS] = useState<FavProps[]>([]);
+
+  useEffect(() => {
+    alreadyLiked();
+  }, []);
+
+  useEffect(() => {
+    getCurrentLS();
+  }, [like]);
+
+  const getCurrentLS = async (): Promise<void> => {
+    const getLS = await AsyncStorage.getItem("Movies");
+    const currentLS = JSON.parse(getLS as string);
+    setLS(currentLS);
+  };
+
+  const alreadyLiked = async (): Promise<void> => {
+    const getLS = await AsyncStorage.getItem("Movies");
+    const currentLS = JSON.parse(getLS as string);
+
+    const itemAlreadyHere = currentLS.findIndex(
+      (item: FavProps) => item.id === data.id
+    );
+
+    if (itemAlreadyHere !== -1) {
+      setLike(true);
+    } else {
+      setLike(false);
+    }
+  };
+
   const addToFavorites = async (): Promise<void> => {
     try {
-      const alreadyLS: string | null = await AsyncStorage.getItem("Movies");
-      const currentLS: FavProps[] = JSON.parse(alreadyLS as string);
+      const itemAlreadyHere = LS.findIndex(
+        (item: FavProps) => item.id === data.id
+      );
 
-      const test = currentLS.findIndex((item: FavProps) => item.id === data.id);
-
-      if (test === -1) {
-        const favoriteObj: FavProps = {
+      if (itemAlreadyHere === -1) {
+        const favoriteItem: FavProps = {
           id: data.id,
           title: data.title,
           image: data.image,
@@ -48,20 +76,30 @@ const MovieDetails: FC = () => {
 
         await AsyncStorage.setItem(
           "Movies",
-          JSON.stringify([...currentLS, favoriteObj])
+          JSON.stringify([...LS, favoriteItem])
         );
+
+        setLike(true);
       }
     } catch (error) {
       console.log(error);
     }
   };
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const removeFromFavorites = (): void => {};
+
+  const removeFromFavorites = async (): Promise<void> => {
+    try {
+      const newLS = LS.filter((item: FavProps) => item.id !== data.id);
+      await AsyncStorage.setItem("Movies", JSON.stringify(newLS));
+      setLike(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const data = {
-    id: 1,
+    id: 2,
     year: "2007",
-    title: "Je suis une légende",
+    title: "Je suis une légende 6",
     image:
       "https://th.bing.com/th/id/OIP.C_5i4kYz0Nlq3DHvPTDofAHaEK?w=329&h=185&c=7&r=0&o=5&pid=1.7",
     rating: 3.4,
@@ -97,6 +135,7 @@ const MovieDetails: FC = () => {
           description={data.description}
           categories={data.categories}
           casting={data.casting}
+          like={like}
         />
       </ScrollView>
     </View>

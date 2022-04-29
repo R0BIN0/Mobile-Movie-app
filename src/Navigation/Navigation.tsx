@@ -26,9 +26,10 @@ const Stack = createNativeStackNavigator<RouteParams>();
 export default function Navigation() {
   const initializeLS = async (): Promise<void> => {
     // await AsyncStorage.clear();
-    const alreadyLS = await AsyncStorage.getItem("Movies");
 
-    if (!alreadyLS) {
+    const alreadySetup: string | null = await AsyncStorage.getItem("Movies");
+
+    if (!alreadySetup) {
       return await AsyncStorage.setItem("Movies", JSON.stringify([]));
     }
   };
