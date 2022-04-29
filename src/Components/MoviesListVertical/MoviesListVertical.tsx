@@ -22,13 +22,22 @@ type Props = {
 };
 
 type DataProps = {
-  data: Props[];
+  data: FavProps[];
+};
+
+type FavProps = {
+  id: number;
+  title: string;
+  image: string;
+  rating: number;
+  description: string;
+  categories: string[];
 };
 
 const MoviesListVertical: FC<DataProps> = ({ data }) => {
   return (
     <View style={styles.container}>
-      {data.map((item) => (
+      {data?.map((item) => (
         <View key={item.id} style={styles.film__container}>
           <MovieCard {...item} />
           <MoviesButton id={item.id} />

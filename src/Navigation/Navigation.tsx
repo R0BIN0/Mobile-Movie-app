@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -9,6 +9,7 @@ import Favorites from "../Pages/Favorites/Favorites";
 import Header from "../Components/Header/Header";
 import BottomBar from "../Components/BottomBar/BottomBar";
 import RouteContextProvider from "../Context/RouteContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export type RouteParams = {
   Home: undefined;
@@ -23,6 +24,19 @@ const screenOptions = {
 const Stack = createNativeStackNavigator<RouteParams>();
 
 export default function Navigation() {
+  const initializeLS = async (): Promise<void> => {
+    // await AsyncStorage.clear();
+    const alreadyLS = await AsyncStorage.getItem("Movies");
+
+    if (!alreadyLS) {
+      return await AsyncStorage.setItem("Movies", JSON.stringify([]));
+    }
+  };
+
+  useEffect(() => {
+    initializeLS();
+  }, []);
+
   return (
     <RouteContextProvider>
       <NavigationContainer>

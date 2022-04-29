@@ -1,14 +1,21 @@
 import { View, Text } from "react-native";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "./Favorites.styles";
 // import useRouteName from "../../Hooks/useRouteName";
 import { ScrollView } from "react-native-gesture-handler";
 import MoviesListVertical from "../../Components/MoviesListVertical/MoviesListVertical";
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface FavoriteProps {}
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Données obtenus du LS
+
+type FavProps = {
+  id: number;
+  title: string;
+  image: string;
+  rating: number;
+  description: string;
+  categories: string[];
+};
 
 const data = [
   {
@@ -57,14 +64,33 @@ const data = [
   },
 ];
 
-const Favorites: FC<FavoriteProps> = () => {
-  // const { routeName } = useRouteName();
+const Favorites: FC = () => {
+  const [moviesArr, setMoviesArr] = useState<FavProps[]>([]);
+
+  console.log(moviesArr);
+
+  const getMovies = async (): Promise<void> => {
+    try {
+      const values = await AsyncStorage.getItem("Movies");
+      if (values !== null) {
+        setMoviesArr(JSON.parse(values));
+      } else {
+        throw "Error";
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getMovies();
+  }, []);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
       <View style={styles.section}>
         <Text style={styles.title}>Mes films favoris</Text>
-        <MoviesListVertical data={data} />
+        <MoviesListVertical data={moviesArr} />
       </View>
     </ScrollView>
   );

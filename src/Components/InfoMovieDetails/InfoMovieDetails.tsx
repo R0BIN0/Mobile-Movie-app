@@ -91,11 +91,9 @@ const InfoMovieDetails: FC<Props> = ({
   categories,
   casting,
 }) => {
-  const renderItem: ListRenderItem<CastingProps> = ({ item }) => {
-    console.log(item);
-
-    return <CastingMovie key={item.id} {...item} />;
-  };
+  const renderItem: ListRenderItem<CastingProps> = ({ item }) => (
+    <CastingMovie key={item.id} {...item} />
+  );
 
   return (
     <View style={styles.container}>

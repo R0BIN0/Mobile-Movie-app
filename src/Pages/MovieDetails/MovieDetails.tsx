@@ -15,15 +15,46 @@ type PictureProps = {
   image: string;
 };
 
+type FavProps = {
+  id: number;
+  title: string;
+  image: string;
+  rating: number;
+  description: string;
+  categories: string[];
+};
+
 const MovieDetails: FC = () => {
-  console.log("====================================");
-  console.log(process.env.TOKEN);
-  console.log("====================================");
   const route = useRoute<RouteProp<RouteParams>>();
   console.log(route.params?.id);
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const addToFavorites = (): void => {};
+  const addToFavorites = async (): Promise<void> => {
+    try {
+      const alreadyLS: string | null = await AsyncStorage.getItem("Movies");
+      const currentLS: FavProps[] = JSON.parse(alreadyLS as string);
+
+      const test = currentLS.findIndex((item: FavProps) => item.id === data.id);
+
+      if (test === -1) {
+        const favoriteObj: FavProps = {
+          id: data.id,
+          title: data.title,
+          image: data.image,
+          rating: data.rating,
+          description: data.description,
+          categories: data.categories,
+        };
+
+        await AsyncStorage.setItem(
+          "Movies",
+          JSON.stringify([...currentLS, favoriteObj])
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const removeFromFavorites = (): void => {};
 
@@ -33,8 +64,8 @@ const MovieDetails: FC = () => {
     title: "Je suis une légende",
     image:
       "https://th.bing.com/th/id/OIP.C_5i4kYz0Nlq3DHvPTDofAHaEK?w=329&h=185&c=7&r=0&o=5&pid=1.7",
-    description:
-      "Robert Neville était un savant de haut niveau et de réputation mondiale, mais il en aurait fallu plus pour stopper les ravages de cet incurable et terrifiant virus d'origine humaine. Mystérieusement immunisé contre le mal, Neville est aujourd'hui le dernier homme à hanter les ruines de New York. Peut-être le dernier homme sur Terre... Depuis trois ans, il diffuse chaque jour des messages radio dans le fol espoir de trouver d'autres survivants. Nul n'a encore répondu. Mais Neville n'est pas seul. Des mutants, victimes de cette peste moderne - on les appelle les 'Infectés' - rôdent dans les ténèbres... observent ses moindres gestes, guettent sa première erreur. Devenu l ultime espoir de l humanité, Neville se consacre tout entier à sa mission : venir à bout du virus, en annuler les terribles effets en se servant de son propre sang.",
+    rating: 3.4,
+    description: "Robert Neville ",
     categories: ["Action", "Aventure", "Violence"],
     casting: [
       {
