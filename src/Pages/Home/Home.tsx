@@ -4,7 +4,7 @@ import styles from "./Home.styles";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import MoviesListHorizontal from "../../Components/MoviesListHorizontal/MoviesListHorizontal";
 import MoviesListVertical from "../../Components/MoviesListVertical/MoviesListVertical";
-import useRouteName from "../../Hooks/useRouteName";
+// import UseRouteName from "../../Hooks/useRouteName";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface HomeProps {}
@@ -53,8 +53,6 @@ const data = [
 ];
 
 const Home: FC<HomeProps> = () => {
-  const { routeName } = useRouteName();
-
   return (
     <>
       <SearchBar />

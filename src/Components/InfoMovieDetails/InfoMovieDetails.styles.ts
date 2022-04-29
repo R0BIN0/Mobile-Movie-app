@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     fontSize: fontSize.xlFS,
     lineHeight: 35,
     fontWeight: "bold",
+    maxWidth: 270,
   },
 
   // ===== rating container =====

@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import { FC } from "react";
 import styles from "./Favorites.styles";
-import useRouteName from "../../Hooks/useRouteName";
+// import useRouteName from "../../Hooks/useRouteName";
 import { ScrollView } from "react-native-gesture-handler";
 import MoviesListVertical from "../../Components/MoviesListVertical/MoviesListVertical";
 
@@ -58,7 +58,7 @@ const data = [
 ];
 
 const Favorites: FC<FavoriteProps> = () => {
-  const { routeName } = useRouteName();
+  // const { routeName } = useRouteName();
 
   return (
     <ScrollView showsVerticalScrollIndicator={false} bounces={false}>

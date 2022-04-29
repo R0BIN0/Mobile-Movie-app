@@ -6,7 +6,7 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 
 // Styles
 import styles from "./Header.styles";
@@ -14,17 +14,9 @@ import styles from "./Header.styles";
 // Icons
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-// Context
-import { useContext } from "react";
-import { RouteContext } from "../../Context/RouteContext";
-
 const Header: FC = () => {
-  const { routeName } = useContext(RouteContext);
-
   return (
-    <SafeAreaView
-      style={{ display: routeName === "MovieDetails" ? "none" : "flex" }}
-    >
+    <SafeAreaView>
       <View style={styles.container}>
         <HeaderProfile />
         <HeaderNotification />

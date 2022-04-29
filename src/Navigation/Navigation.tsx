@@ -27,7 +27,7 @@ export default function Navigation() {
     <RouteContextProvider>
       <NavigationContainer>
         <Header />
-        <Stack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
+        <Stack.Navigator screenOptions={screenOptions}>
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="MovieDetails" component={MovieDetails} />
           <Stack.Screen name="Favorites" component={Favorites} />

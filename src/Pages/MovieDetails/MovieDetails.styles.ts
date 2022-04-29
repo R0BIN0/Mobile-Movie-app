@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
 
   img: {
     width: "100%",
-    height: 225,
+    height: 250,
   },
 
   img__linear: {

@@ -80,12 +80,15 @@ const BottomBar: FC = () => {
 
 const MenuItems: FC<Props> = ({ title, icon, iconType, to }) => {
   const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>();
+  const { setRouteName } = useContext(RouteContext);
+
+  const onPress = () => {
+    setRouteName(to);
+    navigation.navigate(`${to}` as keyof RouteParams);
+  };
 
   return (
-    <TouchableOpacity
-      onPress={() => navigation.navigate(`${to}` as keyof RouteParams)}
-      style={styles.menuItems__container}
-    >
+    <TouchableOpacity {...{ onPress }} style={styles.menuItems__container}>
       {iconType === "Feather" ? (
         <Feather name={icon} size={20} style={styles.icon} />
       ) : (
@@ -102,8 +105,6 @@ const SearchItem: FC<Props> = ({ icon, to }) => {
 
   const onPress = (): void => {
     // Avoid IOS transition page problem
-    console.log(Platform.OS);
-
     if (Platform.OS === "android") {
       setIsBottomButton(true);
       navigation.navigate(`${to}` as keyof RouteParams);
