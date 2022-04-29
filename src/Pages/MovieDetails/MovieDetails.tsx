@@ -7,6 +7,8 @@ import { colors } from "../../Config/variables";
 import { ScrollView } from "react-native-gesture-handler";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { RouteParams } from "../../Navigation/Navigation";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+// import { TOKEN } from "@env";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type PictureProps = {
@@ -14,6 +16,9 @@ type PictureProps = {
 };
 
 const MovieDetails: FC = () => {
+  console.log("====================================");
+  console.log(process.env.TOKEN);
+  console.log("====================================");
   const route = useRoute<RouteProp<RouteParams>>();
   console.log(route.params?.id);
 
