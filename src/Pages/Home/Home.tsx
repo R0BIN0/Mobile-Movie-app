@@ -1,9 +1,10 @@
 import { View, Text, ScrollView } from "react-native";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "./Home.styles";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import MoviesListHorizontal from "../../Components/MoviesListHorizontal/MoviesListHorizontal";
 import MoviesListVertical from "../../Components/MoviesListVertical/MoviesListVertical";
+import { Film } from "../../Config/types";
 
 const data = [
   {
@@ -49,6 +50,23 @@ const data = [
 ];
 
 const Home: FC = () => {
+  const [popularMovies, setPopularMovies] = useState<Film[]>([]);
+  // console.log("====================================");
+  // console.log(popularMovies);
+  // console.log("====================================");
+
+  const getPopularMovies = async (): Promise<void> => {
+    await fetch(
+      `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.API_KEY}`
+    )
+      .then((res) => res.json())
+      .then((data) => setPopularMovies(data.results));
+  };
+
+  useEffect(() => {
+    getPopularMovies();
+  }, []);
+
   return (
     <>
       <SearchBar />

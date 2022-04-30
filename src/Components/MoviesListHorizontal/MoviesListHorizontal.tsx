@@ -6,68 +6,42 @@ import {
   ListRenderItem,
   TouchableOpacity,
 } from "react-native";
-import { FC } from "react";
+import { FC, useState, useEffect } from "react";
 import styles from "./MoviesListHorizontal.styles";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RouteParams } from "../../Navigation/Navigation";
 import { useNavigation } from "@react-navigation/native";
+import { Film } from "../../Config/types";
 
-type PictureProps = {
+type Picture = {
   id: number;
-  image: string;
+  poster_path: string;
 };
 
-type InfoProps = {
+type Info = {
   title: string;
-  categories: string[];
 };
-
-type Props = PictureProps & InfoProps;
-
-const data = [
-  {
-    id: 1,
-    title: "Iron Man 3",
-    image:
-      "https://th.bing.com/th/id/OIP.6X5s7tF-4VRUPnCPJbSzmwHaLH?pid=ImgDet&rs=1",
-    categories: ["Action", "Aventure"],
-  },
-  {
-    id: 2,
-    title: "Le Parrain",
-    image:
-      "https://th.bing.com/th/id/OIP.6X5s7tF-4VRUPnCPJbSzmwHaLH?pid=ImgDet&rs=1",
-    categories: ["Action", "Drame"],
-  },
-  {
-    id: 3,
-    title: "Fight Club",
-    image:
-      "https://th.bing.com/th/id/OIP.6X5s7tF-4VRUPnCPJbSzmwHaLH?pid=ImgDet&rs=1",
-    categories: ["Action", "Drame"],
-  },
-  {
-    id: 4,
-    title: "Je suis une légende",
-    image:
-      "https://th.bing.com/th/id/OIP.6X5s7tF-4VRUPnCPJbSzmwHaLH?pid=ImgDet&rs=1",
-    categories: ["Action", "Drame"],
-  },
-  {
-    id: 5,
-    title: "Là-Haut",
-    image:
-      "https://th.bing.com/th/id/OIP.6X5s7tF-4VRUPnCPJbSzmwHaLH?pid=ImgDet&rs=1",
-    categories: ["Action", "Drame"],
-  },
-];
 
 const MoviesListHorizontal: FC = () => {
-  const renderItem: ListRenderItem<Props> = ({ item }) => {
+  const [popularMovies, setPopularMovies] = useState<Film[]>([]);
+
+  const getPopularMovies = async (): Promise<void> => {
+    await fetch(
+      `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.API_KEY}`
+    )
+      .then((res) => res.json())
+      .then((data) => setPopularMovies(data.results));
+  };
+
+  useEffect(() => {
+    getPopularMovies();
+  }, []);
+
+  const renderItem: ListRenderItem<Film> = ({ item }) => {
     return (
       <View key={item.id}>
-        <MoviePicture id={item.id} image={item.image} />
-        <MovieInfo title={item.title} categories={item.categories} />
+        <MoviePicture id={item.id} poster_path={item.poster_path} />
+        <MovieInfo title={item.title} />
       </View>
     );
   };
@@ -77,14 +51,14 @@ const MoviesListHorizontal: FC = () => {
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
-        data={data}
+        data={popularMovies}
         {...{ renderItem }}
       />
     </View>
   );
 };
 
-const MoviePicture: FC<PictureProps> = ({ id, image }) => {
+const MoviePicture: FC<Picture> = ({ id, poster_path }) => {
   const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>();
 
   const onPress = (): void => {
@@ -95,7 +69,7 @@ const MoviePicture: FC<PictureProps> = ({ id, image }) => {
     <TouchableOpacity {...{ onPress }} style={styles.img__container}>
       <Image
         source={{
-          uri: image,
+          uri: `https://image.tmdb.org/t/p/w500/${poster_path}`,
         }}
         style={styles.img}
       />
@@ -103,16 +77,14 @@ const MoviePicture: FC<PictureProps> = ({ id, image }) => {
   );
 };
 
-const MovieInfo: FC<InfoProps> = ({ title, categories }) => (
-  <View>
-    <Text style={styles.title}>
-      {title.length >= 17 ? `${title.substring(0, 15)}...` : `${title}`}
-    </Text>
-    <View style={styles.categories__container}>
-      <Text style={styles.categories}>{categories[0]}</Text>
-      <Text style={styles.categories}>{categories[1]}</Text>
+const MovieInfo: FC<Info> = ({ title }) => {
+  return (
+    <View>
+      <Text style={styles.title}>
+        {title.length >= 17 ? `${title.substring(0, 15)}...` : `${title}`}
+      </Text>
     </View>
-  </View>
-);
+  );
+};
 
 export default MoviesListHorizontal;
