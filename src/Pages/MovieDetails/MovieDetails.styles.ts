@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colors } from "../../Config/variables";
 
 const styles = StyleSheet.create({
   // ============================= FILM DETAILS =============================
@@ -6,6 +7,7 @@ const styles = StyleSheet.create({
 
   img__container: {
     position: "relative",
+    backgroundColor: colors.primaryBlue,
   },
 
   img: {

@@ -24,18 +24,6 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.pop500,
     lineHeight: 18,
   },
-
-  // categories__container: {
-  //   flexDirection: "row",
-  // },
-
-  // categories: {
-  //   color: colors.secondaryGrey,
-  //   fontFamily: fontFamily.pop400,
-  //   fontSize: 11,
-  //   marginRight: margin.xsM,
-  //   lineHeight: 14,
-  // },
 });
 
 export default styles;

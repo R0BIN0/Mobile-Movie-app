@@ -6,12 +6,13 @@ import {
   ListRenderItem,
   TouchableOpacity,
 } from "react-native";
-import { FC, useState, useEffect } from "react";
+import { FC } from "react";
 import styles from "./MoviesListHorizontal.styles";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RouteParams } from "../../Navigation/Navigation";
 import { useNavigation } from "@react-navigation/native";
 import { Film } from "../../Config/types";
+import { useFetch } from "../../Hooks/useFetch";
 
 type Picture = {
   id: number;
@@ -23,19 +24,10 @@ type Info = {
 };
 
 const MoviesListHorizontal: FC = () => {
-  const [popularMovies, setPopularMovies] = useState<Film[]>([]);
-
-  const getPopularMovies = async (): Promise<void> => {
-    await fetch(
-      `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.API_KEY}`
-    )
-      .then((res) => res.json())
-      .then((data) => setPopularMovies(data.results));
-  };
-
-  useEffect(() => {
-    getPopularMovies();
-  }, []);
+  const { moviesArr } = useFetch(
+    `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.API_KEY}`,
+    "GET_ARR"
+  );
 
   const renderItem: ListRenderItem<Film> = ({ item }) => {
     return (
@@ -51,7 +43,7 @@ const MoviesListHorizontal: FC = () => {
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
-        data={popularMovies}
+        data={moviesArr}
         {...{ renderItem }}
       />
     </View>

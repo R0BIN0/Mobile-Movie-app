@@ -11,87 +11,35 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 import styles from "./InfoMovieDetails.styles";
+import { CastingProps } from "../../Config/types";
 
-// type Props = {
-//   id?: number;
-//   name: string;
-//   role: string;
-//   image: string;
-// };
+type Info = Description & Casting & Button;
 
-type Props = DescriptionProps & CastingListProps & ButtonProps;
-
-type DescriptionProps = {
-  year: string;
-  title: string;
-  description: string;
-  categories: string[];
+type Description = {
+  title?: string;
+  overview?: string;
+  release_date?: string;
+  genre_ids?: number[];
 };
 
-type CastingListProps = {
+type Casting = {
   casting: CastingProps[];
 };
 
-type CastingProps = {
-  id: number;
-  name: string;
-  role: string;
-  image: string;
-};
-
-type ButtonProps = {
+type Button = {
   addToFavorites: () => void;
   removeFromFavorites: () => void;
   like: boolean;
 };
 
-// const data = [
-//   {
-//     id: 1,
-//     name: "Edward Johnaaaaaaa",
-//     role: "Nate",
-//     image:
-//       "https://th.bing.com/th/id/OIP.6X5s7tF-4VRUPnCPJbSzmwHaLH?pid=ImgDet&rs=1",
-//   },
-//   {
-//     id: 2,
-//     name: "Edward Johns",
-//     role: "Nate",
-//     image:
-//       "https://th.bing.com/th/id/OIP.6X5s7tF-4VRUPnCPJbSzmwHaLH?pid=ImgDet&rs=1",
-//   },
-//   {
-//     id: 3,
-//     name: "Edward Johns",
-//     role: "Nate",
-//     image:
-//       "https://th.bing.com/th/id/OIP.6X5s7tF-4VRUPnCPJbSzmwHaLH?pid=ImgDet&rs=1",
-//   },
-//   {
-//     id: 4,
-//     name: "Edward Johns",
-//     role: "Nate",
-//     image:
-//       "https://th.bing.com/th/id/OIP.6X5s7tF-4VRUPnCPJbSzmwHaLH?pid=ImgDet&rs=1",
-//   },
-//   {
-//     id: 5,
-//     name: "Edward Johns",
-//     role: "Nate",
-//     image:
-//       "https://th.bing.com/th/id/OIP.6X5s7tF-4VRUPnCPJbSzmwHaLH?pid=ImgDet&rs=1",
-//   },
-// ];
-
-const InfoMovieDetails: FC<Props> = ({
+const InfoMovieDetails: FC<Info> = ({
   addToFavorites,
   removeFromFavorites,
-  year,
-  title,
-  description,
-  categories,
-  casting,
   like,
+  release_date,
+  title,
+  overview,
+  casting,
 }) => {
   const renderItem: ListRenderItem<CastingProps> = ({ item }) => (
     <CastingMovie key={item.id} {...item} />
@@ -100,10 +48,9 @@ const InfoMovieDetails: FC<Props> = ({
   return (
     <View style={styles.container}>
       <DescriptionMovie
-        year={year}
+        release_date={release_date}
         title={title}
-        description={description}
-        categories={categories}
+        overview={overview}
       />
       <Text style={styles.title__section}>Casting</Text>
       <FlatList
@@ -121,14 +68,13 @@ const InfoMovieDetails: FC<Props> = ({
   );
 };
 
-const DescriptionMovie: FC<DescriptionProps> = ({
-  year,
+const DescriptionMovie: FC<Description> = ({
+  release_date,
   title,
-  description,
-  categories,
+  overview,
 }) => (
   <View>
-    <Text style={styles.year}>{year}</Text>
+    <Text style={styles.year}>{release_date?.substring(0, 4)}</Text>
     <View style={styles.title__container}>
       <Text style={styles.title}>{title}</Text>
       <View style={styles.rating__container}>
@@ -139,35 +85,34 @@ const DescriptionMovie: FC<DescriptionProps> = ({
     <View>
       <Text style={styles.text}>
         <Text style={styles.strong__text}>Synopsis : </Text>
-        {description}
-      </Text>
-      <Text style={styles.text}>
-        <Text style={styles.strong__text}>Catégories : </Text>
-        {categories.map((item, i) => (
-          <Text key={i}>{item}, </Text>
-        ))}
+        {overview}
       </Text>
     </View>
   </View>
 );
 
-const CastingMovie: FC<CastingProps> = ({ name, role, image }) => (
+const CastingMovie: FC<CastingProps> = ({ name, character, profile_path }) => (
   <View>
     <View style={styles.img__container}>
-      <Image style={styles.img} source={{ uri: image }} />
+      <Image
+        style={styles.img}
+        source={{ uri: `https://image.tmdb.org/t/p/w500/${profile_path}` }}
+      />
     </View>
     <View>
       <Text style={styles.name}>
         {name.length >= 14 ? `${name.substring(0, 12)}...` : `${name}`}
       </Text>
       <Text style={styles.role}>
-        {role.length >= 14 ? `${role.substring(0, 12)}...` : `${role}`}
+        {character.length >= 14
+          ? `${character.substring(0, 12)}...`
+          : `${character}`}
       </Text>
     </View>
   </View>
 );
 
-const ButtonsMovie: FC<ButtonProps> = ({
+const ButtonsMovie: FC<Button> = ({
   addToFavorites,
   removeFromFavorites,
   like,

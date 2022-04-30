@@ -16,3 +16,10 @@ export type Film = {
   vote_count: number;
   like?: boolean;
 };
+
+export type CastingProps = {
+  id: number;
+  name: string;
+  character: string;
+  profile_path: string;
+};

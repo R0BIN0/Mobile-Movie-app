@@ -9,27 +9,29 @@ import { RouteProp, useRoute } from "@react-navigation/native";
 import { RouteParams } from "../../Navigation/Navigation";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { RouteContext } from "../../Context/RouteContext";
+import { Film, CastingProps } from "../../Config/types";
+import { useFetch } from "../../Hooks/useFetch";
 
-type PictureProps = {
-  image: string;
-};
-
-type FavProps = {
-  id: number;
-  title: string;
-  image: string;
-  rating: number;
-  description: string;
-  categories: string[];
+type Picture = {
+  backdrop_path?: string;
 };
 
 const MovieDetails: FC = () => {
   const route = useRoute<RouteProp<RouteParams>>();
   const { setRouteName } = useContext(RouteContext);
-  console.log(route.params?.id);
 
   const [like, setLike] = useState<boolean>(false);
-  const [LS, setLS] = useState<FavProps[]>([]);
+  const [LS, setLS] = useState<Film[]>([]);
+
+  const { movieObj } = useFetch(
+    `https://api.themoviedb.org/3/movie/${route.params?.id}?api_key=${process.env.API_KEY}`,
+    "GET_OBJ"
+  );
+
+  const { castingArr } = useFetch(
+    `https://api.themoviedb.org/3/movie/${route.params?.id}/credits?api_key=${process.env.API_KEY}`,
+    "GET_CASTING_ARR"
+  );
 
   useEffect(() => {
     alreadyLiked();
@@ -51,7 +53,7 @@ const MovieDetails: FC = () => {
     const currentLS = JSON.parse(getLS as string);
 
     const itemAlreadyHere = currentLS.findIndex(
-      (item: FavProps) => item.id === data.id
+      (item: Film) => item.id === route.params?.id
     );
 
     if (itemAlreadyHere !== -1) {
@@ -64,24 +66,10 @@ const MovieDetails: FC = () => {
   const addToFavorites = async (): Promise<void> => {
     try {
       const itemAlreadyHere = LS.findIndex(
-        (item: FavProps) => item.id === data.id
+        (item: Film) => item.id === route.params?.id
       );
-
       if (itemAlreadyHere === -1) {
-        const favoriteItem: FavProps = {
-          id: data.id,
-          title: data.title,
-          image: data.image,
-          rating: data.rating,
-          description: data.description,
-          categories: data.categories,
-        };
-
-        await AsyncStorage.setItem(
-          "Movies",
-          JSON.stringify([...LS, favoriteItem])
-        );
-
+        await AsyncStorage.setItem("Movies", JSON.stringify([...LS, movieObj]));
         setLike(true);
       }
     } catch (error) {
@@ -91,7 +79,7 @@ const MovieDetails: FC = () => {
 
   const removeFromFavorites = async (): Promise<void> => {
     try {
-      const newLS = LS.filter((item: FavProps) => item.id !== data.id);
+      const newLS = LS.filter((item: Film) => item.id !== route.params?.id);
       await AsyncStorage.setItem("Movies", JSON.stringify(newLS));
       setLike(false);
     } catch (error) {
@@ -99,45 +87,18 @@ const MovieDetails: FC = () => {
     }
   };
 
-  const data = {
-    id: 2,
-    year: "2007",
-    title: "Je suis une légende 6",
-    image:
-      "https://th.bing.com/th/id/OIP.C_5i4kYz0Nlq3DHvPTDofAHaEK?w=329&h=185&c=7&r=0&o=5&pid=1.7",
-    rating: 3.4,
-    description: "Robert Neville ",
-    categories: ["Action", "Aventure", "Violence"],
-    casting: [
-      {
-        id: 1,
-        name: "Will Smith",
-        role: "Actor",
-        image:
-          "https://th.bing.com/th/id/OIP.f0usiCvs4P7wEIizJmwLRAHaLJ?pid=ImgDet&rs=1",
-      },
-      {
-        id: 2,
-        name: "Will Smith",
-        role: "Actor",
-        image:
-          "https://th.bing.com/th/id/OIP.f0usiCvs4P7wEIizJmwLRAHaLJ?pid=ImgDet&rs=1",
-      },
-    ],
-  };
-
   return (
     <View style={{ backgroundColor: "red" }}>
       <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
-        <PictureMovieDetails image={data.image} />
+        <PictureMovieDetails backdrop_path={movieObj?.backdrop_path} />
         <InfoMovieDetails
           addToFavorites={addToFavorites}
           removeFromFavorites={removeFromFavorites}
-          year={data.year}
-          title={data.title}
-          description={data.description}
-          categories={data.categories}
-          casting={data.casting}
+          release_date={movieObj?.release_date}
+          title={movieObj?.title}
+          overview={movieObj?.overview}
+          genre_ids={movieObj?.genre_ids}
+          casting={castingArr as CastingProps[]}
           like={like}
         />
       </ScrollView>
@@ -145,12 +106,12 @@ const MovieDetails: FC = () => {
   );
 };
 
-const PictureMovieDetails: FC<PictureProps> = ({ image }) => (
+const PictureMovieDetails: FC<Picture> = ({ backdrop_path }) => (
   <View style={styles.img__container}>
     <Image
       style={styles.img}
       source={{
-        uri: image,
+        uri: `https://image.tmdb.org/t/p/w500/${backdrop_path}`,
       }}
     />
     <LinearGradient

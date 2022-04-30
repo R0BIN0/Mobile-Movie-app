@@ -8,24 +8,9 @@ import { RouteParams } from "../../Navigation/Navigation";
 import { useNavigation } from "@react-navigation/native";
 import { Film } from "../../Config/types";
 
-// type PictureProps = {
-//   id: number;
-//   image: string;
-//   like?: boolean;
-// };
-
-// type InfoProps = {
-//   title: string;
-//   rating: number;
-//   categories: string[];
-//   description: string;
-// };
-
-// type Props = PictureProps & InfoProps;
-
 type Picture = {
   id: number;
-  backdrop_path: string;
+  poster_path: string;
   like?: boolean;
 };
 
@@ -38,14 +23,14 @@ type Info = {
 const MovieCard: FC<Film> = ({
   id,
   title,
-  backdrop_path,
+  poster_path,
   vote_average,
   overview,
   like,
 }) => {
   return (
     <View style={styles.container}>
-      <MoviePicture id={id} backdrop_path={backdrop_path} like={like} />
+      <MoviePicture id={id} poster_path={poster_path} like={like} />
       <MovieInfo
         title={title}
         vote_average={vote_average}
@@ -55,7 +40,7 @@ const MovieCard: FC<Film> = ({
   );
 };
 
-const MoviePicture: FC<Picture> = ({ id, backdrop_path, like }) => {
+const MoviePicture: FC<Picture> = ({ id, poster_path, like }) => {
   const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>();
 
   const onPress = (): void => {
@@ -67,7 +52,7 @@ const MoviePicture: FC<Picture> = ({ id, backdrop_path, like }) => {
       <Image
         style={styles.img}
         source={{
-          uri: `https://image.tmdb.org/t/p/w500/${backdrop_path}`,
+          uri: `https://image.tmdb.org/t/p/w500/${poster_path}`,
         }}
       />
 
