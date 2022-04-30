@@ -6,35 +6,17 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { RouteParams } from "../../Navigation/Navigation";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
+import { Film } from "../../Config/types";
 
-type IdProps = {
+type Data = {
+  data: Film[];
+};
+
+type Id = {
   id: number;
 };
 
-type Props = {
-  id: number;
-  title: string;
-  image: string;
-  rating: number;
-  categories: string[];
-  description: string;
-  like?: boolean;
-};
-
-type DataProps = {
-  data: FavProps[];
-};
-
-type FavProps = {
-  id: number;
-  title: string;
-  image: string;
-  rating: number;
-  description: string;
-  categories: string[];
-};
-
-const MoviesListVertical: FC<DataProps> = ({ data }) => {
+const MoviesListVertical: FC<Data> = ({ data }) => {
   return (
     <View style={styles.container}>
       {data?.map((item) => (
@@ -47,7 +29,7 @@ const MoviesListVertical: FC<DataProps> = ({ data }) => {
   );
 };
 
-const MoviesButton: FC<IdProps> = ({ id }) => {
+const MoviesButton: FC<Id> = ({ id }) => {
   const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>();
 
   const onPress = (): void => {

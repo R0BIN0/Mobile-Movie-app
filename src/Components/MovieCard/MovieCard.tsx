@@ -6,45 +6,56 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RouteParams } from "../../Navigation/Navigation";
 import { useNavigation } from "@react-navigation/native";
+import { Film } from "../../Config/types";
 
-type PictureProps = {
+// type PictureProps = {
+//   id: number;
+//   image: string;
+//   like?: boolean;
+// };
+
+// type InfoProps = {
+//   title: string;
+//   rating: number;
+//   categories: string[];
+//   description: string;
+// };
+
+// type Props = PictureProps & InfoProps;
+
+type Picture = {
   id: number;
-  image: string;
+  backdrop_path: string;
   like?: boolean;
 };
 
-type InfoProps = {
+type Info = {
   title: string;
-  rating: number;
-  categories: string[];
-  description: string;
+  vote_average: number;
+  overview: string;
 };
 
-type Props = PictureProps & InfoProps;
-
-const MovieCard: FC<Props> = ({
+const MovieCard: FC<Film> = ({
   id,
   title,
-  image,
-  rating,
-  categories,
-  description,
+  backdrop_path,
+  vote_average,
+  overview,
   like,
 }) => {
   return (
     <View style={styles.container}>
-      <MoviePicture id={id} image={image} like={like} />
+      <MoviePicture id={id} backdrop_path={backdrop_path} like={like} />
       <MovieInfo
         title={title}
-        rating={rating}
-        categories={categories}
-        description={description}
+        vote_average={vote_average}
+        overview={overview}
       />
     </View>
   );
 };
 
-const MoviePicture: FC<PictureProps> = ({ id, image, like }) => {
+const MoviePicture: FC<Picture> = ({ id, backdrop_path, like }) => {
   const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>();
 
   const onPress = (): void => {
@@ -56,7 +67,7 @@ const MoviePicture: FC<PictureProps> = ({ id, image, like }) => {
       <Image
         style={styles.img}
         source={{
-          uri: image,
+          uri: `https://image.tmdb.org/t/p/w500/${backdrop_path}`,
         }}
       />
 
@@ -69,23 +80,14 @@ const MoviePicture: FC<PictureProps> = ({ id, image, like }) => {
   );
 };
 
-const MovieInfo: FC<InfoProps> = ({
-  title,
-  rating,
-  categories,
-  description,
-}) => (
+const MovieInfo: FC<Info> = ({ title, vote_average, overview }) => (
   <View style={styles.info__container}>
     <Text style={styles.title}>{title}</Text>
     <View style={styles.rating__container}>
-      <RatingStars rating={rating} />
-      <Text style={styles.rating}>{rating}</Text>
+      <RatingStars rating={vote_average} />
+      <Text style={styles.rating}>{vote_average}</Text>
     </View>
-    <View style={styles.categories__container}>
-      <Text style={styles.categories}>{categories[0]}</Text>
-      <Text style={styles.categories}>{categories[1]}</Text>
-    </View>
-    <Text style={styles.description}>{description}</Text>
+    <Text style={styles.description}>{overview.substring(0, 100)}...</Text>
   </View>
 );
 

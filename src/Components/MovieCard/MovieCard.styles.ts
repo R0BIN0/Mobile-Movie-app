@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     color: colors.primaryGrey,
     fontFamily: fontFamily.pop500,
     marginBottom: margin.xsM,
+    maxWidth: 150,
   },
 
   // ===== rating container =====
@@ -56,20 +57,6 @@ const styles = StyleSheet.create({
     marginLeft: margin.xsM,
     color: colors.secondaryCTA,
     fontSize: 12,
-  },
-
-  // ===== categories container =====
-
-  categories__container: {
-    flexDirection: "row",
-    marginBottom: margin.xsM,
-  },
-
-  categories: {
-    color: colors.secondaryGrey,
-    fontSize: 11,
-    marginRight: margin.xsM,
-    fontFamily: fontFamily.pop400,
   },
 
   // ===== description container =====

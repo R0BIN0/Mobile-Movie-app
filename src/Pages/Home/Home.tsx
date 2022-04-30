@@ -50,21 +50,18 @@ const data = [
 ];
 
 const Home: FC = () => {
-  const [popularMovies, setPopularMovies] = useState<Film[]>([]);
-  // console.log("====================================");
-  // console.log(popularMovies);
-  // console.log("====================================");
+  const [dramaMovies, setDramaMovies] = useState<Film[]>([]);
 
-  const getPopularMovies = async (): Promise<void> => {
+  const getDramaMovies = async (): Promise<void> => {
     await fetch(
-      `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.API_KEY}`
+      `https://api.themoviedb.org/3/discover/movie?with_genres=18&sort_by=vote_average.desc&vote_count.gte=10&api_key=${process.env.API_KEY}`
     )
       .then((res) => res.json())
-      .then((data) => setPopularMovies(data.results));
+      .then((data) => setDramaMovies(data.results));
   };
 
   useEffect(() => {
-    getPopularMovies();
+    getDramaMovies();
   }, []);
 
   return (
@@ -77,7 +74,7 @@ const Home: FC = () => {
         </View>
         <View style={styles.section}>
           <Text style={styles.title}>Films dramatiques du moment</Text>
-          <MoviesListVertical data={data} />
+          <MoviesListVertical data={dramaMovies} />
         </View>
       </ScrollView>
     </>

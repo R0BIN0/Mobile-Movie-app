@@ -90,16 +90,17 @@ const Favorites: FC = () => {
   };
 
   return (
-    <ScrollView
-      style={styles.container}
-      showsVerticalScrollIndicator={false}
-      bounces={false}
-    >
-      <View style={styles.section}>
-        <Text style={styles.title}>Mes films favoris</Text>
-        <MoviesListVertical data={moviesArr} />
-      </View>
-    </ScrollView>
+    <></>
+    // <ScrollView
+    //   style={styles.container}
+    //   showsVerticalScrollIndicator={false}
+    //   bounces={false}
+    // >
+    //   <View style={styles.section}>
+    //     <Text style={styles.title}>Mes films favoris</Text>
+    //     <MoviesListVertical data={moviesArr} />
+    //   </View>
+    // </ScrollView>
   );
 };
 
