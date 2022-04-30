@@ -10,6 +10,10 @@ import {
 const styles = StyleSheet.create({
   // ============================= FAVORITES =============================
 
+  container: {
+    backgroundColor: colors.primaryBlue,
+  },
+
   section: {
     paddingVertical: padding.lgP,
     paddingLeft: padding.xlP,

@@ -1,4 +1,5 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, ViewStyle, ImageStyle, TextStyle } from "react-native";
+
 import {
   colors,
   padding,
@@ -115,7 +116,6 @@ const styles = StyleSheet.create({
     marginBottom: margin.mdM,
     alignItems: "center",
     padding: padding.mdP,
-
     borderRadius: 10,
   },
 
@@ -141,6 +141,11 @@ const styles = StyleSheet.create({
   icon__button: {
     marginLeft: margin.sM,
     color: colors.primaryGrey,
+  },
+
+  icon__button__like: {
+    marginLeft: margin.sM,
+    color: colors.tertiaryCTA,
   },
 });
 

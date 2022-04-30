@@ -177,13 +177,19 @@ const ButtonsMovie: FC<ButtonProps> = ({
   };
   return (
     <View style={styles.buttons__container}>
-      {/* <TouchableOpacity {...{ onPress }} style={styles.button__secondary}> */}
-      <TouchableOpacity
-        {...{ onPress }}
-        style={{ backgroundColor: like ? "pink" : "black" }}
-      >
-        <Text style={styles.text__button}>Ajouter à mes favoris </Text>
-        <FontAwesome5 name="heart" size={16} style={styles.icon__button} />
+      <TouchableOpacity {...{ onPress }} style={styles.button__secondary}>
+        <Text style={styles.text__button}>
+          {like ? "Retirer des favoris" : "Ajouter à mes favoris"}
+        </Text>
+        {like ? (
+          <FontAwesome
+            name="heart"
+            size={16}
+            style={styles.icon__button__like}
+          />
+        ) : (
+          <FontAwesome5 name="heart" size={16} style={styles.icon__button} />
+        )}
       </TouchableOpacity>
       <TouchableOpacity style={styles.button__primary}>
         <Text style={styles.text__button}>

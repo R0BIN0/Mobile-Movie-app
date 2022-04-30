@@ -1,14 +1,9 @@
 import { View, Text, ScrollView } from "react-native";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import styles from "./Home.styles";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import MoviesListHorizontal from "../../Components/MoviesListHorizontal/MoviesListHorizontal";
 import MoviesListVertical from "../../Components/MoviesListVertical/MoviesListVertical";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
-// import UseRouteName from "../../Hooks/useRouteName";
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 
 const data = [
   {
@@ -54,27 +49,6 @@ const data = [
 ];
 
 const Home: FC = () => {
-  // const [test, setTest] = useState<string>();
-  // console.log(test);
-
-  // const getMovies = async (): Promise<void> => {
-  //   try {
-  //     const values = await AsyncStorage.getItem("Movies");
-
-  //     if (values !== null) {
-  //       setTest(JSON.parse(values));
-  //     } else {
-  //       throw "Error";
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getMovies();
-  // }, []);
-
   return (
     <>
       <SearchBar />

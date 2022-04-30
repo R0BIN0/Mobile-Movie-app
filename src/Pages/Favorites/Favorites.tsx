@@ -68,16 +68,9 @@ const data = [
 ];
 
 const Favorites: FC = () => {
-  const route = useRoute<RouteProp<RouteParams>>();
   const { routeName } = useContext(RouteContext);
 
-  console.log(route);
-
-  // BUG HERE
-
   const [moviesArr, setMoviesArr] = useState<FavProps[]>([]);
-
-  // console.log(moviesArr);
 
   useEffect(() => {
     getMovies();
@@ -97,7 +90,11 @@ const Favorites: FC = () => {
   };
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
+    <ScrollView
+      style={styles.container}
+      showsVerticalScrollIndicator={false}
+      bounces={false}
+    >
       <View style={styles.section}>
         <Text style={styles.title}>Mes films favoris</Text>
         <MoviesListVertical data={moviesArr} />
