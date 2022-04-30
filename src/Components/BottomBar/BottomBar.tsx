@@ -100,16 +100,18 @@ const MenuItems: FC<Props> = ({ title, icon, iconType, to }) => {
 };
 
 const SearchItem: FC<Props> = ({ icon, to }) => {
-  const { setIsBottomButton } = useContext(RouteContext);
+  const { setIsBottomButton, setRouteName } = useContext(RouteContext);
   const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>();
 
   const onPress = (): void => {
     // Avoid IOS transition page problem
     if (Platform.OS === "android") {
       setIsBottomButton(true);
+      setRouteName(to);
       navigation.navigate(`${to}` as keyof RouteParams);
     } else {
       setIsBottomButton(true);
+      setRouteName(to);
       setTimeout(() => {
         navigation.navigate(`${to}` as keyof RouteParams);
       }, 100);

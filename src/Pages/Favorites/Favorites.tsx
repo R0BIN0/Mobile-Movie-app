@@ -5,6 +5,9 @@ import styles from "./Favorites.styles";
 import { ScrollView } from "react-native-gesture-handler";
 import MoviesListVertical from "../../Components/MoviesListVertical/MoviesListVertical";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { RouteProp, useRoute } from "@react-navigation/native";
+import { RouteParams } from "../../Navigation/Navigation";
+import { RouteContext } from "../../Context/RouteContext";
 
 // Données obtenus du LS
 
@@ -65,11 +68,20 @@ const data = [
 ];
 
 const Favorites: FC = () => {
+  const route = useRoute<RouteProp<RouteParams>>();
+  const { routeName } = useContext(RouteContext);
+
+  console.log(route);
+
   // BUG HERE
 
   const [moviesArr, setMoviesArr] = useState<FavProps[]>([]);
 
-  console.log(moviesArr);
+  // console.log(moviesArr);
+
+  useEffect(() => {
+    getMovies();
+  }, [routeName]);
 
   const getMovies = async (): Promise<void> => {
     try {
@@ -83,10 +95,6 @@ const Favorites: FC = () => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    getMovies();
-  }, []);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false} bounces={false}>

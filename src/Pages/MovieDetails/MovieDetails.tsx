@@ -1,5 +1,5 @@
 import { View, Image } from "react-native";
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import styles from "./MovieDetails.styles";
 import InfoMovieDetails from "../../Components/InfoMovieDetails/InfoMovieDetails";
 import { LinearGradient } from "expo-linear-gradient";
@@ -8,6 +8,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { RouteParams } from "../../Navigation/Navigation";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { RouteContext } from "../../Context/RouteContext";
 
 type PictureProps = {
   image: string;
@@ -24,6 +25,7 @@ type FavProps = {
 
 const MovieDetails: FC = () => {
   const route = useRoute<RouteProp<RouteParams>>();
+  const { setRouteName } = useContext(RouteContext);
   console.log(route.params?.id);
 
   const [like, setLike] = useState<boolean>(false);
@@ -31,6 +33,7 @@ const MovieDetails: FC = () => {
 
   useEffect(() => {
     alreadyLiked();
+    setRouteName("MoviesDetails");
   }, []);
 
   useEffect(() => {

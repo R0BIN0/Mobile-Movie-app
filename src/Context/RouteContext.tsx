@@ -11,6 +11,8 @@ export const RouteContext = createContext<valueProps>({} as valueProps);
 
 const RouteContextProvider: FC = ({ children }) => {
   const [routeName, setRouteName] = useState<string>("");
+  console.log(routeName);
+
   const [isBottomButton, setIsBottomButton] = useState<boolean>(false);
 
   return (
