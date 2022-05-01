@@ -95,7 +95,7 @@ const MovieDetails: FC = () => {
           addToFavorites={addToFavorites}
           removeFromFavorites={removeFromFavorites}
           release_date={movieObj?.release_date}
-          title={movieObj?.title}
+          title={movieObj?.title as string}
           overview={movieObj?.overview}
           genre_ids={movieObj?.genre_ids}
           casting={castingArr as CastingProps[]}

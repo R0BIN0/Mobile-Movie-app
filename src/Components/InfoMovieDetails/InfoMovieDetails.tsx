@@ -27,6 +27,7 @@ type Casting = {
 };
 
 type Button = {
+  title?: string;
   addToFavorites: () => void;
   removeFromFavorites: () => void;
   like: boolean;
@@ -60,6 +61,7 @@ const InfoMovieDetails: FC<Info> = ({
         {...{ renderItem }}
       />
       <ButtonsMovie
+        title={title}
         addToFavorites={addToFavorites}
         removeFromFavorites={removeFromFavorites}
         like={like}
@@ -113,6 +115,7 @@ const CastingMovie: FC<CastingProps> = ({ name, character, profile_path }) => (
 );
 
 const ButtonsMovie: FC<Button> = ({
+  title,
   addToFavorites,
   removeFromFavorites,
   like,
@@ -138,7 +141,12 @@ const ButtonsMovie: FC<Button> = ({
       </TouchableOpacity>
       <TouchableOpacity style={styles.button__primary}>
         <Text style={styles.text__button}>
-          Regarder <Text style={styles.strong__text__button}>Fight Club</Text>
+          Regarder{" "}
+          <Text style={styles.strong__text__button}>
+            {(title?.length as number) >= 23
+              ? `${title?.substring(0, 25)}...`
+              : title}
+          </Text>
         </Text>
       </TouchableOpacity>
     </View>
