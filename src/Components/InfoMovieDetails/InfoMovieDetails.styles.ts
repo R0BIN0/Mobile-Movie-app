@@ -15,6 +15,8 @@ const styles = StyleSheet.create({
     paddingVertical: padding.sP,
     paddingHorizontal: padding.xlP,
     backgroundColor: colors.primaryBlue,
+    // height: "100%",
+    flex: 1,
   },
 
   title__section: {

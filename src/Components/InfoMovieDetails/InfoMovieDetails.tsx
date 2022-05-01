@@ -96,10 +96,17 @@ const DescriptionMovie: FC<Description> = ({
 const CastingMovie: FC<CastingProps> = ({ name, character, profile_path }) => (
   <View>
     <View style={styles.img__container}>
-      <Image
-        style={styles.img}
-        source={{ uri: `https://image.tmdb.org/t/p/w500/${profile_path}` }}
-      />
+      {profile_path ? (
+        <Image
+          style={styles.img}
+          source={{ uri: `https://image.tmdb.org/t/p/w500/${profile_path}` }}
+        />
+      ) : (
+        <Image
+          style={styles.img}
+          source={require("../../Assets/Images/noImage.png")}
+        />
+      )}
     </View>
     <View>
       <Text style={styles.name}>

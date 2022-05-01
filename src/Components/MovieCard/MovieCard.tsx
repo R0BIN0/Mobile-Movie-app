@@ -49,12 +49,19 @@ const MoviePicture: FC<Picture> = ({ id, poster_path, like }) => {
 
   return (
     <TouchableOpacity {...{ onPress }} style={styles.img__container}>
-      <Image
-        style={styles.img}
-        source={{
-          uri: `https://image.tmdb.org/t/p/w500/${poster_path}`,
-        }}
-      />
+      {poster_path ? (
+        <Image
+          style={styles.img}
+          source={{
+            uri: `https://image.tmdb.org/t/p/w500/${poster_path}`,
+          }}
+        />
+      ) : (
+        <Image
+          style={styles.img}
+          source={require("../../Assets/Images/noImage.png")}
+        />
+      )}
 
       {like && (
         <TouchableOpacity style={styles.like__container}>

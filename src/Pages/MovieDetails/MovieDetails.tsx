@@ -88,7 +88,7 @@ const MovieDetails: FC = () => {
   };
 
   return (
-    <View style={{ backgroundColor: "red" }}>
+    <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
         <PictureMovieDetails backdrop_path={movieObj?.backdrop_path} />
         <InfoMovieDetails
@@ -108,12 +108,20 @@ const MovieDetails: FC = () => {
 
 const PictureMovieDetails: FC<Picture> = ({ backdrop_path }) => (
   <View style={styles.img__container}>
-    <Image
-      style={styles.img}
-      source={{
-        uri: `https://image.tmdb.org/t/p/w500/${backdrop_path}`,
-      }}
-    />
+    {backdrop_path ? (
+      <Image
+        style={styles.img}
+        source={{
+          uri: `https://image.tmdb.org/t/p/w500/${backdrop_path}`,
+        }}
+      />
+    ) : (
+      <Image
+        style={styles.img}
+        source={require("../../Assets/Images/noImageLarge.png")}
+      />
+    )}
+
     <LinearGradient
       colors={["rgba(0, 0, 0, .0)", `${colors.primaryBlue}`]}
       style={styles.img__linear}

@@ -3,6 +3,11 @@ import { colors } from "../../Config/variables";
 
 const styles = StyleSheet.create({
   // ============================= FILM DETAILS =============================
+
+  container: {
+    backgroundColor: colors.primaryBlue,
+    height: "100%",
+  },
   // ============================= FILM DETAILS PICTURE =============================
 
   img__container: {
