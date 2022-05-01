@@ -17,8 +17,6 @@ type Id = {
 };
 
 const MoviesListVertical: FC<Data> = ({ data }) => {
-  console.log(data);
-
   return (
     <View style={styles.container}>
       {data?.map((item) => (

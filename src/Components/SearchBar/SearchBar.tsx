@@ -3,25 +3,41 @@ import { FC, useState, useRef, RefObject, useEffect, useContext } from "react";
 import styles from "./SearchBar.styles";
 import Feather from "react-native-vector-icons/Feather";
 import { colors } from "../../Config/variables";
+import { Film } from "../../Config/types";
 
 import { RouteContext } from "../../Context/RouteContext";
 
-type Props = {
-  value?: string;
-  // eslint-disable-next-line no-unused-vars
-  setValue: (txt: string) => void;
-  inputRef?: RefObject<TextInput>;
+type Keyword = {
+  keyword: string;
+  setKeyword: React.Dispatch<React.SetStateAction<string>>;
+  setSearchData: React.Dispatch<React.SetStateAction<Film[]>>;
+  handleKeyword: () => Promise<void | null>;
 };
 
-const SearchBar: FC = () => {
-  const { isBottomButton, setIsBottomButton } = useContext(RouteContext);
+type Search = {
+  keyword: string;
+  inputRef: RefObject<TextInput>;
+  setKeyword: React.Dispatch<React.SetStateAction<string>>;
+  handleKeyword: () => Promise<void | null>;
+};
 
+type Cancel = {
+  setKeyword: React.Dispatch<React.SetStateAction<string>>;
+  setSearchData: React.Dispatch<React.SetStateAction<Film[]>>;
+};
+
+const SearchBar: FC<Keyword> = ({
+  keyword,
+  setKeyword,
+  setSearchData,
+  handleKeyword,
+}) => {
+  const { isBottomButton, setIsBottomButton } = useContext(RouteContext);
   const [firstRender, setFirstRender] = useState<boolean>(false);
-  const [value, setValue] = useState<string>("");
   const inputRef = useRef<TextInput>(null);
 
   const isBottomTabInput = () => {
-    setValue("");
+    setKeyword("");
     inputRef.current?.focus();
     setIsBottomButton(false);
   };
@@ -36,23 +52,36 @@ const SearchBar: FC = () => {
 
   return (
     <View style={styles.container}>
-      <SearchInput value={value} setValue={setValue} inputRef={inputRef} />
-      <SearchCancel setValue={setValue} />
+      <SearchInput
+        keyword={keyword}
+        setKeyword={setKeyword}
+        inputRef={inputRef}
+        handleKeyword={handleKeyword}
+      />
+      <SearchCancel setKeyword={setKeyword} setSearchData={setSearchData} />
     </View>
   );
 };
 
-const SearchInput: FC<Props> = ({ value, setValue, inputRef }) => {
-  const onChangeText = (txt: string) => setValue(txt);
+const SearchInput: FC<Search> = ({
+  keyword,
+  setKeyword,
+  inputRef,
+  handleKeyword,
+}) => {
+  const onChangeText = (txt: string) => setKeyword(txt);
 
   return (
     <View style={styles.input__container}>
-      <TouchableOpacity style={styles.icon__container}>
+      <TouchableOpacity
+        onPress={() => handleKeyword()}
+        style={styles.icon__container}
+      >
         <Feather name="search" size={20} style={styles.icon} />
       </TouchableOpacity>
       <TextInput
         ref={inputRef}
-        value={value}
+        value={keyword}
         {...{ onChangeText }}
         style={styles.input}
         placeholder="Rechercher"
@@ -62,12 +91,13 @@ const SearchInput: FC<Props> = ({ value, setValue, inputRef }) => {
   );
 };
 
-const SearchCancel: FC<Props> = ({ setValue }) => {
+const SearchCancel: FC<Cancel> = ({ setKeyword, setSearchData }) => {
+  const onPress = () => {
+    setKeyword("");
+    setSearchData([]);
+  };
   return (
-    <TouchableOpacity
-      style={styles.cancel__container}
-      onPress={() => setValue("")}
-    >
+    <TouchableOpacity style={styles.cancel__container} {...{ onPress }}>
       <Text style={styles.cancel__text}>Annuler</Text>
     </TouchableOpacity>
   );
