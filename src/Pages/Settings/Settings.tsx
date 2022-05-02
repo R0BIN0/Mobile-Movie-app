@@ -1,6 +1,10 @@
+// General
 import { View, Text, Image } from "react-native";
-import React from "react";
+
+// Styles
 import styles from "./Settings.styles";
+
+// ============================ Settings ============================
 
 export default function Settings() {
   return (

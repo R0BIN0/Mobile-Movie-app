@@ -1,20 +1,36 @@
+// General
 import { View, Image } from "react-native";
 import { FC, useContext, useEffect, useState } from "react";
-import styles from "./MovieDetails.styles";
-import InfoMovieDetails from "../../Components/InfoMovieDetails/InfoMovieDetails";
 import { LinearGradient } from "expo-linear-gradient";
-import { colors } from "../../Config/variables";
 import { ScrollView } from "react-native-gesture-handler";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+// Styles
+import styles from "./MovieDetails.styles";
+
+// Components
+import InfoMovieDetails from "../../Components/InfoMovieDetails/InfoMovieDetails";
+
+// Config
+import { colors } from "../../Config/variables";
+
+// Navigation
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { RouteParams } from "../../Navigation/Navigation";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { RouteContext } from "../../Context/RouteContext";
-import { Film, CastingProps } from "../../Config/types";
+
+// Hooks
 import { useFetch } from "../../Hooks/useFetch";
+
+// Types
+
+import { Film, CastingProps } from "../../Config/types";
 
 type Picture = {
   backdrop_path?: string;
 };
+
+// ============================ Movie Details ============================
 
 const MovieDetails: FC = () => {
   const route = useRoute<RouteProp<RouteParams>>();
@@ -42,11 +58,15 @@ const MovieDetails: FC = () => {
     getCurrentLS();
   }, [like]);
 
+  // ============== Get current LS Func ==============
+
   const getCurrentLS = async (): Promise<void> => {
     const getLS = await AsyncStorage.getItem("Movies");
     const currentLS = JSON.parse(getLS as string);
     setLS(currentLS);
   };
+
+  // ============== Know if the movie is already liked Func ==============
 
   const alreadyLiked = async (): Promise<void> => {
     const getLS = await AsyncStorage.getItem("Movies");
@@ -63,6 +83,8 @@ const MovieDetails: FC = () => {
     }
   };
 
+  // ============== Add to favorites Func ==============
+
   const addToFavorites = async (): Promise<void> => {
     try {
       const itemAlreadyHere = LS.findIndex(
@@ -76,6 +98,8 @@ const MovieDetails: FC = () => {
       console.log(error);
     }
   };
+
+  // ============== Remove from favorites Func ==============
 
   const removeFromFavorites = async (): Promise<void> => {
     try {
@@ -105,6 +129,8 @@ const MovieDetails: FC = () => {
     </View>
   );
 };
+
+// ============================ Picture Movie Details ============================
 
 const PictureMovieDetails: FC<Picture> = ({ backdrop_path }) => (
   <View style={styles.img__container}>

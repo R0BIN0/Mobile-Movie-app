@@ -1,4 +1,7 @@
+// General
 import { StyleSheet } from "react-native";
+
+// Config
 import { colors, padding, fontFamily } from "../../Config/variables";
 
 const styles = StyleSheet.create({

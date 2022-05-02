@@ -14,6 +14,8 @@ import styles from "./Header.styles";
 // Icons
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
+// ============================ Header ============================
+
 const Header: FC = () => {
   return (
     <SafeAreaView style={styles.statusBar}>
@@ -24,6 +26,8 @@ const Header: FC = () => {
     </SafeAreaView>
   );
 };
+
+// ============================ Header Profile ============================
 
 const HeaderProfile: FC = () => (
   <View style={styles.header__left__container}>
@@ -41,6 +45,8 @@ const HeaderProfile: FC = () => (
     </View>
   </View>
 );
+
+// ============================ Header Notification ============================
 
 const HeaderNotification: FC = () => (
   <View>

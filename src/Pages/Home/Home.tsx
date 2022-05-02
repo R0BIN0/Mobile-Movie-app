@@ -1,11 +1,22 @@
+// General
 import { View, Text, ScrollView } from "react-native";
 import { FC, useState } from "react";
+
+// Styles
 import styles from "./Home.styles";
+
+// Components
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import MoviesListHorizontal from "../../Components/MoviesListHorizontal/MoviesListHorizontal";
 import MoviesListVertical from "../../Components/MoviesListVertical/MoviesListVertical";
+
+// Hooks
 import { useFetch } from "../../Hooks/useFetch";
+
+// Types
 import { Film } from "../../Config/types";
+
+// ============================ Home ============================
 
 const Home: FC = () => {
   const { moviesArr } = useFetch(

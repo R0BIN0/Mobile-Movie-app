@@ -1,5 +1,7 @@
+// General
 import { StyleSheet } from "react-native";
 
+// Config
 import {
   colors,
   padding,
@@ -24,7 +26,7 @@ const styles = StyleSheet.create({
     marginVertical: margin.sM,
   },
 
-  // ============================= DESCRIPTION FILM DETAILS =============================
+  // ============================= DESCRIPTION FILM =============================
 
   year: {
     color: colors.primaryGrey,
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.pop700,
   },
 
-  // ============================= CASTING FILM DETAILS =============================
+  // ============================= CASTING FILM =============================
 
   img__container: {
     marginBottom: margin.sM,
@@ -104,7 +106,7 @@ const styles = StyleSheet.create({
     color: colors.secondaryGrey,
   },
 
-  // ============================= BUTTONS FILM DETAILS =============================
+  // ============================= BUTTONS FILM =============================
 
   buttons__container: {
     marginTop: margin.xlM,

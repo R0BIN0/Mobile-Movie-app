@@ -1,3 +1,4 @@
+// General
 import {
   View,
   Text,
@@ -7,13 +8,16 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { FC } from "react";
+
+// Styles
+import styles from "./InfoMovieDetails.styles";
+
+// Icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
-import styles from "./InfoMovieDetails.styles";
+// Types
 import { CastingProps } from "../../Config/types";
-
-type Info = Description & Casting & Button;
 
 type Description = {
   title?: string;
@@ -32,6 +36,10 @@ type Button = {
   removeFromFavorites: () => void;
   like: boolean;
 };
+
+type Info = Description & Casting & Button;
+
+// ============================ Info Movie Details ============================
 
 const InfoMovieDetails: FC<Info> = ({
   addToFavorites,
@@ -70,6 +78,8 @@ const InfoMovieDetails: FC<Info> = ({
   );
 };
 
+// ============================ Description Movie ============================
+
 const DescriptionMovie: FC<Description> = ({
   release_date,
   title,
@@ -92,6 +102,8 @@ const DescriptionMovie: FC<Description> = ({
     </View>
   </View>
 );
+
+// ============================ Casting Movie ============================
 
 const CastingMovie: FC<CastingProps> = ({ name, character, profile_path }) => (
   <View>
@@ -120,6 +132,8 @@ const CastingMovie: FC<CastingProps> = ({ name, character, profile_path }) => (
     </View>
   </View>
 );
+
+// ============================ Buttons Movie ============================
 
 const ButtonsMovie: FC<Button> = ({
   title,

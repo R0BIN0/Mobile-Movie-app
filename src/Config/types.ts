@@ -1,3 +1,5 @@
+// GENERAL TYPES
+
 export type Film = {
   adult: boolean;
   backdrop_path: string;

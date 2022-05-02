@@ -1,4 +1,7 @@
+// General
 import { StyleSheet } from "react-native";
+
+// Config
 import {
   padding,
   fontFamily,
@@ -8,7 +11,7 @@ import {
 } from "../../Config/variables";
 
 const styles = StyleSheet.create({
-  // ============================= NO FAVORITES =============================
+  // ============================= FAVORITES =============================
 
   container__no__favorites: {
     backgroundColor: colors.primaryBlue,
@@ -21,8 +24,6 @@ const styles = StyleSheet.create({
     color: colors.secondaryGrey,
     fontFamily: fontFamily.pop500,
   },
-
-  // ============================= FAVORITES =============================
 
   container: {
     backgroundColor: colors.primaryBlue,

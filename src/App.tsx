@@ -1,4 +1,4 @@
-import Navigation from "./Navigation/Navigation";
+// General
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import {
@@ -12,6 +12,11 @@ import {
   Poppins_800ExtraBold,
   Poppins_900Black,
 } from "@expo-google-fonts/poppins";
+
+// Navigation
+import Navigation from "./Navigation/Navigation";
+
+// ============================ APP ============================
 
 export default function App() {
   const [fontsLoaded] = useFonts({

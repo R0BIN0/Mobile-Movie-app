@@ -1,4 +1,7 @@
+// General
 import { StyleSheet, StatusBar } from "react-native";
+
+// Config
 import {
   colors,
   padding,
@@ -24,7 +27,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primaryBlue,
   },
 
-  // ============================= HEADER-LEFT =============================
+  // ============================= HEADER PROFILE =============================
 
   header__left__container: {
     flexDirection: "row",
@@ -54,7 +57,7 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.pop700,
   },
 
-  // ============================= HEADER-RIGHT =============================
+  // ============================= HEADER NOTIFICATION =============================
 
   notification__box: {
     width: 40,

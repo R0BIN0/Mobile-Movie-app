@@ -1,11 +1,23 @@
+// General
 import { View, TouchableOpacity } from "react-native";
 import { FC } from "react";
-import MovieCard from "../MovieCard/MovieCard";
+
+// Styles
 import styles from "./MoviesListVertical.styles";
+
+// Icons
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+
+// Components
+import MovieCard from "../MovieCard/MovieCard";
+
+// Navigation
 import { RouteParams } from "../../Navigation/Navigation";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
+
+// Types
+
 import { Film } from "../../Config/types";
 
 type Data = {
@@ -15,6 +27,8 @@ type Data = {
 type Id = {
   id: number;
 };
+
+// ============================ Movie List Vertical ============================
 
 const MoviesListVertical: FC<Data> = ({ data }) => {
   return (
@@ -28,6 +42,8 @@ const MoviesListVertical: FC<Data> = ({ data }) => {
     </View>
   );
 };
+
+// ============================ Movies Button ============================
 
 const MoviesButton: FC<Id> = ({ id }) => {
   const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>();

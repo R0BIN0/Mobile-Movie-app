@@ -1,3 +1,4 @@
+// General
 import { useState, createContext, FC } from "react";
 
 type valueProps = {
@@ -8,6 +9,8 @@ type valueProps = {
 };
 
 export const RouteContext = createContext<valueProps>({} as valueProps);
+
+// ============================ ROUTE [CONTEXT] ============================
 
 const RouteContextProvider: FC = ({ children }) => {
   const [routeName, setRouteName] = useState<string>("");

@@ -1,11 +1,22 @@
+// General
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { FC, useState, useRef, RefObject, useEffect, useContext } from "react";
-import styles from "./SearchBar.styles";
-import Feather from "react-native-vector-icons/Feather";
-import { colors } from "../../Config/variables";
-import { Film } from "../../Config/types";
 
+// Styles
+import styles from "./SearchBar.styles";
+
+// Icons
+import Feather from "react-native-vector-icons/Feather";
+
+// Context
 import { RouteContext } from "../../Context/RouteContext";
+
+// Config
+import { colors } from "../../Config/variables";
+
+// Types
+
+import { Film } from "../../Config/types";
 
 type Keyword = {
   keyword: string;
@@ -25,6 +36,8 @@ type Cancel = {
   setKeyword: React.Dispatch<React.SetStateAction<string>>;
   setSearchData: React.Dispatch<React.SetStateAction<Film[]>>;
 };
+
+// ============================ Search Bar ============================
 
 const SearchBar: FC<Keyword> = ({
   keyword,
@@ -63,6 +76,8 @@ const SearchBar: FC<Keyword> = ({
   );
 };
 
+// ============================ Search Input ============================
+
 const SearchInput: FC<Search> = ({
   keyword,
   setKeyword,
@@ -90,6 +105,8 @@ const SearchInput: FC<Search> = ({
     </View>
   );
 };
+
+// ============================ Search Cancel ============================
 
 const SearchCancel: FC<Cancel> = ({ setKeyword, setSearchData }) => {
   const onPress = () => {

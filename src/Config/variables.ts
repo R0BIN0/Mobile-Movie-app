@@ -1,3 +1,5 @@
+// COLORS
+
 export const colors = {
   primaryBlue: "#191932",
   secondaryBlue: "#23243B",
@@ -11,6 +13,8 @@ export const colors = {
   secondaryGrey: "#BDBDBD",
 };
 
+// FONT FAMILY
+
 export const fontFamily = {
   pop100: "Poppins_100Thin",
   pop200: "Poppins_200ExtraLight",
@@ -23,6 +27,8 @@ export const fontFamily = {
   pop900: "Poppins_900Black",
 };
 
+// FONT SIZE
+
 export const fontSize = {
   xsFS: 15,
   sFS: 20,
@@ -31,6 +37,8 @@ export const fontSize = {
   xlFS: 35,
   xxlFS: 40,
 };
+
+// PADDING
 
 export const padding = {
   xsP: 5,
@@ -41,6 +49,8 @@ export const padding = {
   xxlP: 30,
   xxxlP: 45,
 };
+
+// MARGIN
 
 export const margin = {
   xsM: 5,

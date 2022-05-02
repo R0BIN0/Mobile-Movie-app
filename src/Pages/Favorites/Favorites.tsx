@@ -1,11 +1,22 @@
+// General
 import { View, Text } from "react-native";
 import { FC, useContext, useEffect, useState } from "react";
-import styles from "./Favorites.styles";
 import { ScrollView } from "react-native-gesture-handler";
-import MoviesListVertical from "../../Components/MoviesListVertical/MoviesListVertical";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+// Styles
+import styles from "./Favorites.styles";
+
+// Components
+import MoviesListVertical from "../../Components/MoviesListVertical/MoviesListVertical";
+
+// Context
 import { RouteContext } from "../../Context/RouteContext";
+
+// Types
 import { Film } from "../../Config/types";
+
+// ============================ Favorites ============================
 
 const Favorites: FC = () => {
   const { routeName } = useContext(RouteContext);

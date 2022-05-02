@@ -1,11 +1,23 @@
+// General
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { FC } from "react";
+
+// Styles
 import styles from "./MovieCard.styles";
+
+// Components
 import RatingStars from "../RatingStars/RatingStars";
+
+// Icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+
+// Navigation
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RouteParams } from "../../Navigation/Navigation";
 import { useNavigation } from "@react-navigation/native";
+
+// Types
+
 import { Film } from "../../Config/types";
 
 type Picture = {
@@ -19,6 +31,8 @@ type Info = {
   vote_average: number;
   overview: string;
 };
+
+// ============================ Movie Card ============================
 
 const MovieCard: FC<Film> = ({
   id,
@@ -39,6 +53,8 @@ const MovieCard: FC<Film> = ({
     </View>
   );
 };
+
+// ============================ Movie Picture ============================
 
 const MoviePicture: FC<Picture> = ({ id, poster_path, like }) => {
   const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>();
@@ -71,6 +87,8 @@ const MoviePicture: FC<Picture> = ({ id, poster_path, like }) => {
     </TouchableOpacity>
   );
 };
+
+// ============================ Movie Info ============================
 
 const MovieInfo: FC<Info> = ({ title, vote_average, overview }) => (
   <View style={styles.info__container}>

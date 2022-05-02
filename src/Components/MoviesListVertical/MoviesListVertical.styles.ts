@@ -1,8 +1,11 @@
+// General
 import { StyleSheet } from "react-native";
+
+// Config
 import { colors, padding, margin } from "../../Config/variables";
 
 const styles = StyleSheet.create({
-  // ============================= FILM LIST =============================
+  // ============================= MOVIES LIST VERTICAL =============================
 
   container: {
     paddingRight: padding.xlP,
@@ -15,7 +18,7 @@ const styles = StyleSheet.create({
     marginBottom: margin.lgM,
   },
 
-  // ============================= FILM BUTTON =============================
+  // ============================= MOVIES BUTTON =============================
 
   button__container: {
     width: 42.5,

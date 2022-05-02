@@ -1,12 +1,16 @@
+// General
 import { useState, useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
+
+// Types
 import { Film, CastingProps } from "../Config/types";
+
+// ============================ USE FETCH [HOOKS] ============================
 
 export const useFetch = (url: string, action: string) => {
   const [moviesArr, setmoviesArr] = useState<Film[]>([]);
   const [castingArr, setCastingArr] = useState<CastingProps[]>([]);
   const [movieObj, setMovieObj] = useState<Film>();
-
   const [loading, setLoading] = useState<boolean>(false);
 
   const sendResult = (res: AxiosResponse): void => {

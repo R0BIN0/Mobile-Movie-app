@@ -1,10 +1,13 @@
+// General
 import { StyleSheet } from "react-native";
+
+// Config
 import { colors, padding, fontFamily, margin } from "../../Config/variables";
 
 const styles = StyleSheet.create({
-  // ============================= FILM LIST =============================
+  // ============================= MOVIE LIST HORIZONTAL =============================
 
-  // ============================= FILM PICTURE =============================
+  // ============================= MOVIE PICTURE =============================
 
   img__container: {
     marginBottom: margin.sM,
@@ -17,7 +20,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
 
-  // ============================= FILM INFO =============================
+  // ============================= MOVIE INFO =============================
 
   title: {
     color: colors.primaryGrey,

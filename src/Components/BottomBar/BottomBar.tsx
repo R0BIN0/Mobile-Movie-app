@@ -1,20 +1,23 @@
+// General
 import { View, Text, TouchableOpacity, Platform } from "react-native";
 import { FC, useContext } from "react";
+
+// Styles
 import styles from "./BottomBar.styles";
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+
+// Icons
 import Feather from "react-native-vector-icons/Feather";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+
+// Navigation
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RouteParams } from "../../Navigation/Navigation";
+
+// Context
 import { RouteContext } from "../../Context/RouteContext";
 
-type Props = {
-  title?: string;
-  icon: string;
-  iconType?: string;
-  to: string;
-};
-
+// Data
 const Items = [
   {
     search: false,
@@ -52,6 +55,17 @@ const Items = [
   },
 ];
 
+// Types
+
+type Props = {
+  title?: string;
+  icon: string;
+  iconType?: string;
+  to: string;
+};
+
+// ============================ Bottom Bar ============================
+
 const BottomBar: FC = () => {
   return (
     <View style={styles.container}>
@@ -78,6 +92,8 @@ const BottomBar: FC = () => {
   );
 };
 
+// ============================ Menu Items ============================
+
 const MenuItems: FC<Props> = ({ title, icon, iconType, to }) => {
   const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>();
   const { setRouteName } = useContext(RouteContext);
@@ -98,6 +114,8 @@ const MenuItems: FC<Props> = ({ title, icon, iconType, to }) => {
     </TouchableOpacity>
   );
 };
+
+// ============================ Search Item ============================
 
 const SearchItem: FC<Props> = ({ icon, to }) => {
   const { setIsBottomButton, setRouteName } = useContext(RouteContext);

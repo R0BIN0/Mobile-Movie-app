@@ -1,10 +1,19 @@
+// General
 import { FC } from "react";
-import { colors } from "../../Config/variables";
+
+// Icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+
+// Config
+import { colors } from "../../Config/variables";
+
+// Types
 
 type Props = {
   rating: number;
 };
+
+// ============================ Rating Stars ============================
 
 const RatingStars: FC<Props> = ({ rating }) => {
   const ratingStar = Math.ceil(rating / 2);

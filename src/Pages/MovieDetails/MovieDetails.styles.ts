@@ -1,14 +1,17 @@
+// General
 import { StyleSheet } from "react-native";
+
+// Colors
 import { colors } from "../../Config/variables";
 
 const styles = StyleSheet.create({
-  // ============================= FILM DETAILS =============================
+  // ============================= MOVIE DETAILS =============================
 
   container: {
     backgroundColor: colors.primaryBlue,
     height: "100%",
   },
-  // ============================= FILM DETAILS PICTURE =============================
+  // ============================= PCITURE MOVIE DETAILS =============================
 
   img__container: {
     position: "relative",

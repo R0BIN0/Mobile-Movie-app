@@ -1,3 +1,4 @@
+// General
 import {
   View,
   Text,
@@ -7,12 +8,21 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { FC } from "react";
+
+// Styles
 import styles from "./MoviesListHorizontal.styles";
+
+// Navigation
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RouteParams } from "../../Navigation/Navigation";
 import { useNavigation } from "@react-navigation/native";
-import { Film } from "../../Config/types";
+
+// Hooks
 import { useFetch } from "../../Hooks/useFetch";
+
+// Types
+
+import { Film } from "../../Config/types";
 
 type Picture = {
   id: number;
@@ -22,6 +32,8 @@ type Picture = {
 type Info = {
   title: string;
 };
+
+// ============================ Movie List Horizontal ============================
 
 const MoviesListHorizontal: FC = () => {
   const { moviesArr } = useFetch(
@@ -50,6 +62,8 @@ const MoviesListHorizontal: FC = () => {
   );
 };
 
+// ============================ Movie Picture ============================
+
 const MoviePicture: FC<Picture> = ({ id, poster_path }) => {
   const navigation = useNavigation<NativeStackNavigationProp<RouteParams>>();
 
@@ -75,6 +89,8 @@ const MoviePicture: FC<Picture> = ({ id, poster_path }) => {
     </TouchableOpacity>
   );
 };
+
+// ============================ Movie Info ============================
 
 const MovieInfo: FC<Info> = ({ title }) => {
   return (

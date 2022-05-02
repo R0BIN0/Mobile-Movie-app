@@ -1,8 +1,11 @@
+// General
 import { StyleSheet } from "react-native";
+
+// Config
 import { colors, padding, fontFamily, margin } from "../../Config/variables";
 
 const styles = StyleSheet.create({
-  // ============================= FILM CARD =============================
+  // ============================= MOVIE CARD =============================
 
   container: {
     flexDirection: "row",
@@ -10,7 +13,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  // ============================= FILM CARD PICTURE =============================
+  // ============================= MOVIE PICTURE =============================
 
   img__container: {
     position: "relative",
@@ -32,7 +35,7 @@ const styles = StyleSheet.create({
     color: colors.tertiaryCTA,
   },
 
-  // ============================= FILM CARD INFO =============================
+  // ============================= MOVIE INFO =============================
 
   info__container: {
     paddingLeft: padding.sP,
