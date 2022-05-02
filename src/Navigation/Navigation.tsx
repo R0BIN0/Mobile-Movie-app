@@ -6,6 +6,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../Pages/Home/Home";
 import MovieDetails from "../Pages/MovieDetails/MovieDetails";
 import Favorites from "../Pages/Favorites/Favorites";
+import Profile from "../Pages/Profile/Profile";
+import Settings from "../Pages/Settings/Settings";
 
 import Header from "../Components/Header/Header";
 import BottomBar from "../Components/BottomBar/BottomBar";
@@ -17,6 +19,8 @@ export type RouteParams = {
   Home: undefined;
   MovieDetails: { id: number };
   Favorites: undefined;
+  Profile: undefined;
+  Settings: undefined;
 };
 
 const screenOptions = {
@@ -48,6 +52,8 @@ export default function Navigation() {
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="MovieDetails" component={MovieDetails} />
             <Stack.Screen name="Favorites" component={Favorites} />
+            <Stack.Screen name="Profile" component={Profile} />
+            <Stack.Screen name="Settings" component={Settings} />
           </Stack.Navigator>
           <BottomBar />
         </NavigationContainer>

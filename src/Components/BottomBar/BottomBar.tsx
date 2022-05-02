@@ -41,14 +41,14 @@ const Items = [
     title: "Profil",
     icon: "user",
     iconType: "Feather",
-    to: "",
+    to: "Profile",
   },
   {
     search: false,
     title: "Options",
     icon: "settings",
     iconType: "Feather",
-    to: "",
+    to: "Settings",
   },
 ];
 
