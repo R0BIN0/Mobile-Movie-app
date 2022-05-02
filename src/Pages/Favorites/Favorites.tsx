@@ -30,16 +30,26 @@ const Favorites: FC = () => {
   };
 
   return (
-    <ScrollView
-      style={styles.container}
-      showsVerticalScrollIndicator={false}
-      bounces={false}
-    >
-      <View style={styles.section}>
-        <Text style={styles.title}>Mes films favoris</Text>
-        <MoviesListVertical data={moviesArr} />
-      </View>
-    </ScrollView>
+    <>
+      {moviesArr.length === 0 ? (
+        <View style={styles.container__no__favorites}>
+          <Text style={styles.text__no__favorites}>
+            Vous n&apos;avez pas de favoris
+          </Text>
+        </View>
+      ) : (
+        <ScrollView
+          style={styles.container}
+          showsVerticalScrollIndicator={false}
+          bounces={false}
+        >
+          <View style={styles.section}>
+            <Text style={styles.title}>Mes films favoris</Text>
+            <MoviesListVertical data={moviesArr} />
+          </View>
+        </ScrollView>
+      )}
+    </>
   );
 };
 

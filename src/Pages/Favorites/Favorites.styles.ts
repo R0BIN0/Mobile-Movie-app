@@ -8,6 +8,20 @@ import {
 } from "../../Config/variables";
 
 const styles = StyleSheet.create({
+  // ============================= NO FAVORITES =============================
+
+  container__no__favorites: {
+    backgroundColor: colors.primaryBlue,
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  text__no__favorites: {
+    color: colors.secondaryGrey,
+    fontFamily: fontFamily.pop500,
+  },
+
   // ============================= FAVORITES =============================
 
   container: {
