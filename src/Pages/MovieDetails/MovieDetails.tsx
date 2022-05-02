@@ -35,7 +35,7 @@ const MovieDetails: FC = () => {
 
   useEffect(() => {
     alreadyLiked();
-    setRouteName("MoviesDetails");
+    setRouteName("MovieDetails");
   }, []);
 
   useEffect(() => {
