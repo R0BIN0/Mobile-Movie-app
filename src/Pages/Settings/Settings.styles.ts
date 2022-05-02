@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../Config/variables";
+import { colors, fontFamily, margin } from "../../Config/variables";
 
 const styles = StyleSheet.create({
   // ============================= SETTINGS =============================
@@ -13,6 +13,13 @@ const styles = StyleSheet.create({
 
   text: {
     color: colors.secondaryGrey,
+    fontFamily: fontFamily.pop500,
+    marginBottom: margin.xlM,
+  },
+
+  img: {
+    width: 100,
+    height: 100,
   },
 });
 
