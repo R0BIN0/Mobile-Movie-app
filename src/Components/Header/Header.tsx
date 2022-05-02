@@ -16,7 +16,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 
 const Header: FC = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.statusBar}>
       <View style={styles.container}>
         <HeaderProfile />
         <HeaderNotification />

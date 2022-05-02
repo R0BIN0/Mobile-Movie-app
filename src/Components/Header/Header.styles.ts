@@ -10,6 +10,10 @@ import {
 const styles = StyleSheet.create({
   // ============================= HEADER =============================
 
+  statusBar: {
+    backgroundColor: colors.primaryBlue,
+  },
+
   container: {
     marginTop: StatusBar.currentHeight,
     paddingVertical: padding.mdP,
